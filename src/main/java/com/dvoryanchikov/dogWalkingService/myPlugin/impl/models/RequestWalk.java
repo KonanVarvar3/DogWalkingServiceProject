@@ -1,5 +1,6 @@
 package com.dvoryanchikov.dogWalkingService.myPlugin.impl.models;
 
+import com.dvoryanchikov.dogWalkingService.myPlugin.impl.entities.IRequestWalk;
 import com.dvoryanchikov.dogWalkingService.myPlugin.impl.models.enums.RequestWalkStatus;
 
 import java.util.Date;
@@ -51,5 +52,23 @@ public class RequestWalk {
 
     public void setRequestWalkStatus(RequestWalkStatus requestWalkStatus) {
         this.requestWalkStatus = requestWalkStatus;
+    }
+
+    public void toEntity(IRequestWalk entity){
+        entity.setRequestPlace(this.getRequestPlace());
+        entity.setTimeWalk(this.getTimeWalk());
+        entity.setPet(this.getPet());
+        entity.setWalkDuration(this.getWalkDuration());
+        entity.setRequestWalkStatus(this.getRequestWalkStatus());
+    }
+
+    public static RequestWalk fromEntity(IRequestWalk entity){
+        RequestWalk requestWalk = new RequestWalk();
+        requestWalk.setRequestPlace(entity.getRequestPlace());
+        requestWalk.setTimeWalk(entity.getTimeWalk());
+        requestWalk.setPet(entity.getPet());
+        requestWalk.setWalkDuration(entity.getWalkDuration());
+        requestWalk.setRequestWalkStatus(entity.getRequestWalkStatus());
+        return requestWalk;
     }
 }

@@ -1,5 +1,6 @@
 package com.dvoryanchikov.dogWalkingService.myPlugin.impl.models;
 
+import com.dvoryanchikov.dogWalkingService.myPlugin.impl.entities.IDog;
 import com.dvoryanchikov.dogWalkingService.myPlugin.impl.models.enums.DogStatus;
 
 import java.util.Date;
@@ -13,7 +14,8 @@ public class Dog {
     private String dogCharacter;
     private DogStatus dogStatus;
 
-    public Dog(){}
+    public Dog() {
+    }
 
     public String getDogName() {
         return dogName;
@@ -69,5 +71,27 @@ public class Dog {
 
     public void setDogStatus(DogStatus dogStatus) {
         this.dogStatus = dogStatus;
+    }
+
+    public void toEntity(IDog entity) {
+        entity.setDogName(this.getDogName());
+        entity.setGender(this.getGender());
+        entity.setDogBirthDate(this.getDogBirthDate());
+        entity.setBreed(this.getBreed());
+        entity.setColor(this.getColor());
+        entity.setDogCharacter(this.getDogCharacter());
+        entity.setDogStatus(this.getDogStatus());
+    }
+
+    public static Dog fromEntity(IDog entity) {
+        Dog dog = new Dog();
+        dog.setDogName(entity.getDogName());
+        dog.setGender(entity.getGender());
+        dog.setDogBirthDate(entity.getDogBirthDate());
+        dog.setBreed(entity.getBreed());
+        dog.setColor(entity.getColor());
+        dog.setDogCharacter(entity.getDogCharacter());
+        dog.setDogStatus(entity.getDogStatus());
+        return dog;
     }
 }
