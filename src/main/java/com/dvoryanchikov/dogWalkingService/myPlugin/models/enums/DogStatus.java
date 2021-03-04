@@ -1,4 +1,4 @@
-package com.dvoryanchikov.dogWalkingService.myPlugin.impl.models.enums;
+package com.dvoryanchikov.dogWalkingService.myPlugin.models.enums;
 
 public enum DogStatus {
     WALKING("Walking"),

@@ -1,11 +1,11 @@
-package com.dvoryanchikov.dogWalkingService.myPlugin.impl.models;
+package com.dvoryanchikov.dogWalkingService.myPlugin.models;
 
-import com.dvoryanchikov.dogWalkingService.myPlugin.impl.entities.IDog;
-import com.dvoryanchikov.dogWalkingService.myPlugin.impl.models.enums.DogStatus;
+import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IDog;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.enums.DogStatus;
 
 import java.util.Date;
 
-public class Dog {
+public class Dog extends ModelUniqueId{
     private String dogName;
     private String gender;
     private Date dogBirthDate;
@@ -81,6 +81,7 @@ public class Dog {
         entity.setColor(this.getColor());
         entity.setDogCharacter(this.getDogCharacter());
         entity.setDogStatus(this.getDogStatus());
+        entity.setUniqueId(this.getUniqueId());
     }
 
     public static Dog fromEntity(IDog entity) {
@@ -92,6 +93,7 @@ public class Dog {
         dog.setColor(entity.getColor());
         dog.setDogCharacter(entity.getDogCharacter());
         dog.setDogStatus(entity.getDogStatus());
+        dog.setUniqueId(entity.getUniqueId());
         return dog;
     }
 }

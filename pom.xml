@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.dvoryanchikov.dogWalkingService</groupId>
     <artifactId>myPlugin</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0.${buildNumber}</version>
 
     <organization>
         <name>Example Company</name>
@@ -54,18 +54,7 @@
             <version>4.0.0</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>${spring.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-            <scope>provided</scope>
-        </dependency>
+
 
         <!-- WIRED TEST RUNNER DEPENDENCIES -->
         <dependency>
@@ -88,7 +77,7 @@
         <dependency>
             <groupId>com.atlassian.activeobjects</groupId>
             <artifactId>activeobjects-plugin</artifactId>
-            <version>0.23.7</version>
+            <version>1.1.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -104,59 +93,131 @@
         -->
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.atlassian.maven.plugins</groupId>
-                <artifactId>jira-maven-plugin</artifactId>
-                <version>${amps.version}</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <productVersion>${jira.version}</productVersion>
-                    <productDataVersion>${jira.version}</productDataVersion>
-                    <!-- Uncomment to install TestKit backdoor in JIRA. -->
-                    <!--
-                    <pluginArtifacts>
-                        <pluginArtifact>
-                            <groupId>com.atlassian.jira.tests</groupId>
-                            <artifactId>jira-testkit-plugin</artifactId>
-                            <version>${testkit.version}</version>
-                        </pluginArtifact>
-                    </pluginArtifacts>
-                    -->
-                    <enableQuickReload>true</enableQuickReload>
 
-                    <!-- See here for an explanation of default instructions: -->
-                    <!-- https://developer.atlassian.com/docs/advanced-topics/configuration-of-instructions-in-atlassian-plugins -->
-                    <instructions>
-                        <Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>
+        <build>
+            <resources>
+                <resource>
+                    <directory>src/main/resources</directory>
+                    <filtering>true</filtering>
+                </resource>
+            </resources>
 
-                        <!-- Add package to export here -->
-                        <Export-Package>
-                            com.dvoryanchikov.dogWalkingService.myPlugin.api,
-                        </Export-Package>
+            <plugins>
+                <plugin>
+                    <groupId>com.atlassian.maven.plugins</groupId>
+                    <artifactId>jira-maven-plugin</artifactId>
+                    <version>${amps.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <productVersion>${jira.version}</productVersion>
+                        <productDataVersion>${jira.version}</productDataVersion>
 
-                        <!-- Add package import here -->
-                        <Import-Package>
-                            org.springframework.osgi.*;resolution:="optional",
-                            org.eclipse.gemini.blueprint.*;resolution:="optional",
-                            *
-                        </Import-Package>
+                        <!-- Uncomment to install TestKit backdoor in JIRA. -->
+                        <!--
+                        <pluginArtifacts>
+                            <pluginArtifact>
+                                <groupId>com.atlassian.jira.tests</groupId>
+                                <artifactId>jira-testkit-plugin</artifactId>
+                                <version>${testkit.version}</version>
+                            </pluginArtifact>
+                        </pluginArtifacts>
+                        -->
 
-                        <!-- Ensure plugin is spring powered -->
-                        <Spring-Context>*</Spring-Context>
-                    </instructions>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+                        <enableQuickReload>true</enableQuickReload>
+<!--                        <enableFastdev>true</enableFastdev>-->
+                        <compressResources>false</compressResources>
+                        <encoding>utf8</encoding>
+<!--                        <source>1.8</source>-->
+<!--                        <target>1.8</target>-->
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>1.12</version>
+                    <executions>
+                        <execution>
+                            <id>parse-version</id>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>parse-version</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                    <version>1.3</version>
+                    <configuration>
+                        <revisionOnScmFailure>no.scm.config.in.pom</revisionOnScmFailure>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>create-timestamp-id</id>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>create-timestamp</goal>
+                            </goals>
+                            <configuration>
+                                <timestampFormat>yyyy-MM-dd HH:mm:ss.S</timestampFormat>
+                                <timestampPropertyName>myBuildNumberVariable</timestampPropertyName>
+                                <!-- formats the timestamp all together like 2016-04-04 14:17:05.123 and puts
+                                    it in the ${myBuildNumberVariable} buildProperty -->
+                            </configuration>
+                        </execution>
+                    </executions>
+<!--                    <configuration>-->
+<!--                        <format>{0}</format>-->
+<!--                        <items>-->
+<!--                            <item>buildNumber</item>-->
+<!--                        </items>-->
+<!--                        &lt;!&ndash; doCheck and doUpdate actually talk to repository if it's true, Check would check that there are no local changes. Update would update it &ndash;&gt;-->
+<!--&lt;!&ndash;                        <docheck>false</docheck>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <doupdate>false</doupdate>&ndash;&gt;-->
+<!--                    </configuration>-->
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <executions>
+                        <execution>
+                            <id>set-version</id>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>set</goal>
+                            </goals>
+                            <configuration>
+                                <!--suppress UnresolvedMavenProperty -->
+                                <newVersion>
+                                    ${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${buildNumber}
+                                </newVersion>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>upgrade-pom</id>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>commit</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+
+        </build>
+
 
     <properties>
         <jira.version>8.13.3</jira.version>
         <amps.version>8.1.0</amps.version>
         <plugin.testrunner.version>2.0.1</plugin.testrunner.version>
         <osgi.javaconfig.version>0.2.0</osgi.javaconfig.version>
-        <spring.version>4.2.5.RELEASE</spring.version>
+<!--        <spring.version>4.2.5.RELEASE</spring.version>-->
+        <atlassian.spring.scanner.version>1.2.13</atlassian.spring.scanner.version>
         <!-- This property ensures consistency between the key in atlassian-plugin.xml and the OSGi bundle's key. -->
         <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
         <!-- TestKit version 6.x for JIRA 6.x -->

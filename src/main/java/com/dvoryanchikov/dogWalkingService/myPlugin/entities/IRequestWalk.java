@@ -1,6 +1,6 @@
-package com.dvoryanchikov.dogWalkingService.myPlugin.impl.entities;
+package com.dvoryanchikov.dogWalkingService.myPlugin.entities;
 
-import com.dvoryanchikov.dogWalkingService.myPlugin.impl.models.enums.RequestWalkStatus;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.enums.RequestWalkStatus;
 import net.java.ao.Entity;
 
 import java.util.Date;
@@ -25,4 +25,8 @@ public interface IRequestWalk extends Entity {
     public RequestWalkStatus getRequestWalkStatus();
 
     public void setRequestWalkStatus(RequestWalkStatus requestWalkStatus);
+
+    public String getUniqueId();
+
+    public void setUniqueId(String uniqueId);
 }

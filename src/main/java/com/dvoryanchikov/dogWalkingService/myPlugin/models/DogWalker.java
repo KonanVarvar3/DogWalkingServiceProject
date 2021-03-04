@@ -1,8 +1,7 @@
-package com.dvoryanchikov.dogWalkingService.myPlugin.impl.models;
+package com.dvoryanchikov.dogWalkingService.myPlugin.models;
 
-import com.dvoryanchikov.dogWalkingService.myPlugin.impl.entities.IClient;
-import com.dvoryanchikov.dogWalkingService.myPlugin.impl.entities.IDogWalker;
-import com.dvoryanchikov.dogWalkingService.myPlugin.impl.models.enums.DogWalkerStatus;
+import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IDogWalker;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.enums.DogWalkerStatus;
 
 public class DogWalker extends Human{
     private DogWalkerStatus dogWalkerStatus;
@@ -25,9 +24,10 @@ public class DogWalker extends Human{
         entity.setPhoneNumber(this.getPhoneNumber());
         entity.setEmail(this.getEmail());
         entity.setDogWalkerStatus(this.getDogWalkerStatus());
+        entity.setUniqueId(this.getUniqueId());
     }
 
-    public static DogWalker formEntity(IDogWalker entity) {
+    public static DogWalker fromEntity(IDogWalker entity) {
         DogWalker dogWalker = new DogWalker();
         dogWalker.setLastName(entity.getLastName());
         dogWalker.setName(entity.getName());
@@ -36,6 +36,7 @@ public class DogWalker extends Human{
         dogWalker.setPhoneNumber(entity.getPhoneNumber());
         dogWalker.setEmail(entity.getEmail());
         dogWalker.setDogWalkerStatus(entity.getDogWalkerStatus());
+        dogWalker.setUniqueId(entity.getUniqueId());
         return dogWalker;
     }
 }

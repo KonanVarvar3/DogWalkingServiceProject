@@ -1,11 +1,11 @@
-package com.dvoryanchikov.dogWalkingService.myPlugin.impl.models;
+package com.dvoryanchikov.dogWalkingService.myPlugin.models;
 
-import com.dvoryanchikov.dogWalkingService.myPlugin.impl.entities.IRequestWalk;
-import com.dvoryanchikov.dogWalkingService.myPlugin.impl.models.enums.RequestWalkStatus;
+import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IRequestWalk;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.enums.RequestWalkStatus;
 
 import java.util.Date;
 
-public class RequestWalk {
+public class RequestWalk extends ModelUniqueId{
     private String requestPlace;
     private Date timeWalk;
     private String pet;
@@ -60,6 +60,7 @@ public class RequestWalk {
         entity.setPet(this.getPet());
         entity.setWalkDuration(this.getWalkDuration());
         entity.setRequestWalkStatus(this.getRequestWalkStatus());
+        entity.setUniqueId(this.getUniqueId());
     }
 
     public static RequestWalk fromEntity(IRequestWalk entity){
@@ -69,6 +70,7 @@ public class RequestWalk {
         requestWalk.setPet(entity.getPet());
         requestWalk.setWalkDuration(entity.getWalkDuration());
         requestWalk.setRequestWalkStatus(entity.getRequestWalkStatus());
+        requestWalk.setUniqueId(entity.getUniqueId());
         return requestWalk;
     }
 }

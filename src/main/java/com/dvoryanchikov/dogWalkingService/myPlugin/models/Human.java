@@ -1,8 +1,8 @@
-package com.dvoryanchikov.dogWalkingService.myPlugin.impl.models;
+package com.dvoryanchikov.dogWalkingService.myPlugin.models;
 
 import java.util.Date;
 
-public class Human {
+public class Human extends ModelUniqueId{
     private String lastName;
     private String name;
     private String middleName;
@@ -10,7 +10,7 @@ public class Human {
     private String phoneNumber;
     private String email;
 
-    public Human(){}
+    public Human(){ }
 
     public String getLastName() {
         return lastName;

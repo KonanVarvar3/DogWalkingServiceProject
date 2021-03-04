@@ -1,6 +1,6 @@
-package com.dvoryanchikov.dogWalkingService.myPlugin.impl.entities;
+package com.dvoryanchikov.dogWalkingService.myPlugin.entities;
 
-import com.dvoryanchikov.dogWalkingService.myPlugin.impl.models.enums.DogStatus;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.enums.DogStatus;
 import net.java.ao.Entity;
 
 import java.util.Date;
@@ -34,4 +34,8 @@ public interface IDog extends Entity {
     public DogStatus getDogStatus();
 
     public void setDogStatus(DogStatus dogStatus);
+
+    public String getUniqueId();
+
+    public void setUniqueId(String uniqueId);
 }

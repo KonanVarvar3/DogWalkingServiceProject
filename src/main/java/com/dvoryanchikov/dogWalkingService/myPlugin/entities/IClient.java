@@ -1,11 +1,12 @@
-package com.dvoryanchikov.dogWalkingService.myPlugin.impl.entities;
+package com.dvoryanchikov.dogWalkingService.myPlugin.entities;
 
-import com.dvoryanchikov.dogWalkingService.myPlugin.impl.models.enums.DogWalkerStatus;
+
 import net.java.ao.Entity;
 
 import java.util.Date;
 
-public interface IDogWalker extends Entity {
+
+public interface IClient extends Entity{
 
     public String getLastName();
 
@@ -31,7 +32,12 @@ public interface IDogWalker extends Entity {
 
     public void setEmail(String email);
 
-    public DogWalkerStatus getDogWalkerStatus();
+    public String getAddress();
 
-    public void setDogWalkerStatus(DogWalkerStatus dogWalkerStatus);
+    public void setAddress(String address);
+
+    public String getUniqueId();
+
+    public void setUniqueId(String uniqueId);
+
 }

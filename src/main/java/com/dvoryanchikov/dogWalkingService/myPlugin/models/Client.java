@@ -1,6 +1,6 @@
-package com.dvoryanchikov.dogWalkingService.myPlugin.impl.models;
+package com.dvoryanchikov.dogWalkingService.myPlugin.models;
 
-import com.dvoryanchikov.dogWalkingService.myPlugin.impl.entities.IClient;
+import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IClient;
 
 public class Client extends Human {
     private String address;
@@ -24,9 +24,10 @@ public class Client extends Human {
         entity.setPhoneNumber(this.getPhoneNumber());
         entity.setEmail(this.getEmail());
         entity.setAddress(this.getAddress());
+        entity.setUniqueId(this.getUniqueId());
     }
 
-    public static Client formEntity(IClient entity) {
+    public static Client fromEntity(IClient entity) {
         Client client = new Client();
         client.setLastName(entity.getLastName());
         client.setName(entity.getName());
@@ -35,6 +36,7 @@ public class Client extends Human {
         client.setPhoneNumber(entity.getPhoneNumber());
         client.setEmail(entity.getEmail());
         client.setAddress(entity.getAddress());
+        client.setUniqueId(entity.getUniqueId());
         return client;
     }
 }
