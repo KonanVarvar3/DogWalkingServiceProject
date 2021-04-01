@@ -1,43 +1,43 @@
 package com.dvoryanchikov.dogWalkingService.myPlugin.entities;
 
-
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.Client;
 import net.java.ao.Entity;
 
 import java.util.Date;
 
 
-public interface IClient extends Entity{
+public interface IClient extends Entity {
 
-    public String getLastName();
+    String getLastName();
 
-    public void setLastName(String lastName);
+    void setLastName(String lastName);
 
-    public String getName();
+    String getName();
 
-    public void setName(String name);
+    void setName(String name);
 
-    public String getMiddleName();
+    String getMiddleName();
 
-    public void setMiddleName(String middleName);
+    void setMiddleName(String middleName);
 
-    public Date getBirthDate();
+    Date getBirthDate();
 
-    public void setBirthDate(Date birthDate);
+    void setBirthDate(Date birthDate);
 
-    public String getPhoneNumber();
+    String getPhoneNumber();
 
-    public void setPhoneNumber(String phoneNumber);
+    void setPhoneNumber(String phoneNumber);
 
-    public String getEmail();
+    String getEmail();
 
-    public void setEmail(String email);
+    void setEmail(String email);
 
-    public String getAddress();
+    String getAddress();
 
-    public void setAddress(String address);
+    void setAddress(String address);
 
-    public String getUniqueId();
+    String getUniqueId();
 
-    public void setUniqueId(String uniqueId);
+    void setUniqueId(String uniqueId);
 
 }

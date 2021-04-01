@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <meta name="decorator" content="atl.general"/>
+        <title>
+            Clients
+        </title>
+
+        <script type="text/javascript" src="/plugins/servlet/servlet-inf/js/scriptInfClient.js"></script>
+
+        <link href="/plugins/servlet/servlet-inf/css/myPlugin.css" rel="stylesheet"/>
+
+<!--        <style>-->
+<!--            #newClt{-->
+<!--                color: green;-->
+<!--                margin-left: 45%;-->
+<!--                display:none;-->
+<!--            }-->
+<!--        </style>-->
+
+    </head>
+    <body>
+        <h1>Search client</h1>
+        <br>
+        <form id="myForm" action="#" onsubmit="formFindClient()">
+            <table id="findClient">
+                <tr>
+                    <td>Enter unique id client</td>
+                </tr>
+                <tr>
+                    <td><input type=text id="uniqueId"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type=submit name="submit" value="find" id="new">
+                        <input type="button" onclick="addFromBd()" value="get all clients">
+                        <input type="button" onclick="clearClient()" value="clear found client">
+                        <input type="button" onclick="clearAllClient()" value="clear all clients">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br>
+
+<!--        <script>-->
+<!--            function addFromBd(){-->
+
+<!--                document.getElementById("newClient").style.display = "block";-->
+
+<!--                setTimeout(function(){-->
+<!--                    document.getElementById("newClient").style.display = "none";-->
+<!--                    }, 1000);-->
+
+<!--                document.getElementById("lastName").value = "";-->
+<!--            }-->
+
+<!--        </script>-->
+
+        <div id="findTable"></div>
+
+        <br>
+        <div id="clientTable"></div>
+
+        <div id="newClt">Client has been created!</div>
+
+        <br>
+        <table>
+            <tr>
+                <td>Last name:</td>
+                <td><input type="text" id="lastName" placeholder="Default"></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" id="name" placeholder="Default"></td>
+            </tr>
+            <tr>
+                <td>Middle name:</td>
+                <td><input type="text" id="middleName" placeholder="Default"></td>
+            </tr>
+            <tr>
+                <td>Birth date:</td>
+                <td><input type="text" id="birthDate" placeholder="yyyy-mm-dd"></td>
+            </tr>
+            <tr>
+                <td> number:</td>
+                <td><input type="text" id="phoneNumber" placeholder="Default"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" id="email" placeholder="Default"></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><input type="text" id="address" placeholder="Default"></td>
+            </tr>
+            <tr>
+                <td><input type="button" onclick="crt()" value="send"></td>
+            </tr>
+        </table>
+
+        <br>
+        <div id="out"></div>
+    </body>
+</html>

@@ -2,11 +2,15 @@ package com.dvoryanchikov.dogWalkingService.myPlugin.models;
 
 import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IDogWalker;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.enums.DogWalkerStatus;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 public class DogWalker extends Human{
+    @JsonProperty("dogWalkerStatus")
     private DogWalkerStatus dogWalkerStatus;
 
-    public DogWalker(){}
+    public DogWalker(){
+        dogWalkerStatus = DogWalkerStatus.FREE;
+    }
 
     public DogWalkerStatus getDogWalkerStatus() {
         return dogWalkerStatus;

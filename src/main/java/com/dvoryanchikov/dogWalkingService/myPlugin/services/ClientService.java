@@ -8,28 +8,34 @@ public class ClientService {
     private ActiveObjects ao;
     private ClientManager clientManager;
 
-    private ClientService(ActiveObjects ao){
+    private ClientService(ActiveObjects ao) {
         this.ao = ao;
-        this.clientManager = new ClientManager(ao);
+        this.clientManager = clientManager.create(ao);
     }
 
-    public static ClientService create(ActiveObjects ao){
+    public static ClientService create(ActiveObjects ao) {
         return new ClientService(ao);
     }
 
-    public Client getClientByUniqueId(String uniqueId){
+    public Client getClientByUniqueId(String uniqueId) {
         return clientManager.getClientByUniqueId(uniqueId);
     }
 
-    public boolean createClient(Client model){
+    public Client[] getAllClients() {
+        return clientManager.getAllClients();
+    }
+
+    public boolean createClient(Client model) {
         return clientManager.createClient(model);
     }
 
-    public boolean deleteClientByUniqueId(String uniqueId){
+    public boolean deleteClientByUniqueId(String uniqueId) {
+
         return clientManager.deleteClientByUniqueId(uniqueId);
     }
 
-    public boolean updateClient(Client model){
+    public boolean updateClient(Client model) {
+
         return clientManager.updateClient(model);
     }
 }

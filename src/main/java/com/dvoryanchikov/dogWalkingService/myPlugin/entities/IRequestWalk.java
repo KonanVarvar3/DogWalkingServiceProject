@@ -26,7 +26,15 @@ public interface IRequestWalk extends Entity {
 
     public void setRequestWalkStatus(RequestWalkStatus requestWalkStatus);
 
+    public void setRequestWalkStatus();
+
     public String getUniqueId();
 
     public void setUniqueId(String uniqueId);
+
+    public void setUniqueId();
+
+    public String getClientId();
+
+    public void setClientId(String clientId);
 }

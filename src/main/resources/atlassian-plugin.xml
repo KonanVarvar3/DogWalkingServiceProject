@@ -15,10 +15,10 @@
         <dependency>com.atlassian.auiplugin:ajs</dependency>
         
         <resource type="download" name="myPlugin.css" location="/css/myPlugin.css"/>
-        <resource type="download" name="myPlugin.js" location="/js/myPlugin.js"/>
+        <resource type="download" name="scriptInfClient.js" location="/js/scriptInfClient.js"/>
         <resource type="download" name="images/" location="/images"/>
 
-        <context>myPlugin</context>
+        <context>atl.general</context>
     </web-resource>
 
     <component-import key ="ao" name="Active Objects Service" interface="com.atlassian.activeobjects.external.ActiveObjects"/>
@@ -30,11 +30,20 @@
         <entity>com.dvoryanchikov.dogWalkingService.myPlugin.entities.IRequestWalk</entity>
     </ao>
 
+
+
+    <rest key="rest" path="/dogWalkingRest" version="1.0"/>
+
+    <servlet name="Servlet for dog walking service"
+             class="com.dvoryanchikov.dogWalkingService.myPlugin.servlet.ServletDogWalking"
+             key="servlet-service">
+        <url-pattern>/servlet-inf/*</url-pattern>
+    </servlet>
+
     <component key="client-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.ClientManager" />
     <component key="dog-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.DogManager" />
     <component key="dogWalker-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.DogWalkerManager" />
     <component key="requestWalk-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.RequestWalkManager" />
-
-    <rest key="rest" path="/rest" version="1.0"/>
+    <component-import key="templateRenderer" interface="com.atlassian.templaterenderer.TemplateRenderer"/>
 
 </atlassian-plugin>

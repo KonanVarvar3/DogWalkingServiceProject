@@ -51,10 +51,23 @@ public class RequestWalkManager {
         return null;
     }
 
+    public IRequestWalk getEntityByUniqueId(String uniqueId) {
+        try {
+            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            IRequestWalk[] entities = ao.find(IRequestWalk.class, query);
+            if (entities != null && entities.length > 0) {
+                return entities[0];
+            }
+        } catch (Exception ex) {
+            String exs = ex.getMessage();
+        }
+        return null;
+    }
+
     public boolean updateRequestWalk(RequestWalk model) {
         try {
             if (model != null) {
-                IRequestWalk entity = (IRequestWalk) getRequestWalkByUniqueId(model.getUniqueId());
+                IRequestWalk entity = getEntityByUniqueId(model.getUniqueId());
                 if (entity != null) {
                     model.toEntity(entity);
                     entity.save();

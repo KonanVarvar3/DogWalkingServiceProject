@@ -38,4 +38,8 @@ public interface IDog extends Entity {
     public String getUniqueId();
 
     public void setUniqueId(String uniqueId);
+
+    public String getOwnerId();
+
+    public void setOwnerId(String ownerId);
 }

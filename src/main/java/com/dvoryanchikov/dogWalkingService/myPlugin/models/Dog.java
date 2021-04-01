@@ -2,19 +2,30 @@ package com.dvoryanchikov.dogWalkingService.myPlugin.models;
 
 import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IDog;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.enums.DogStatus;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.util.Date;
 
-public class Dog extends ModelUniqueId{
+public class Dog extends UniqID{
+    @JsonProperty("dogName")
     private String dogName;
+    @JsonProperty("gender")
     private String gender;
+    @JsonProperty("dogBirthDate")
     private Date dogBirthDate;
+    @JsonProperty("breed")
     private String breed;
+    @JsonProperty("color")
     private String color;
+    @JsonProperty("dogCharacter")
     private String dogCharacter;
+    @JsonProperty("dogStatus")
     private DogStatus dogStatus;
+    @JsonProperty("ownerId")
+    private String ownerId;
 
     public Dog() {
+        dogStatus = DogStatus.AT_HOME;
     }
 
     public String getDogName() {
@@ -73,6 +84,14 @@ public class Dog extends ModelUniqueId{
         this.dogStatus = dogStatus;
     }
 
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
     public void toEntity(IDog entity) {
         entity.setDogName(this.getDogName());
         entity.setGender(this.getGender());
@@ -82,6 +101,7 @@ public class Dog extends ModelUniqueId{
         entity.setDogCharacter(this.getDogCharacter());
         entity.setDogStatus(this.getDogStatus());
         entity.setUniqueId(this.getUniqueId());
+        entity.setOwnerId(this.getOwnerId());
     }
 
     public static Dog fromEntity(IDog entity) {
@@ -94,6 +114,7 @@ public class Dog extends ModelUniqueId{
         dog.setDogCharacter(entity.getDogCharacter());
         dog.setDogStatus(entity.getDogStatus());
         dog.setUniqueId(entity.getUniqueId());
+        dog.setOwnerId(entity.getOwnerId());
         return dog;
     }
 }

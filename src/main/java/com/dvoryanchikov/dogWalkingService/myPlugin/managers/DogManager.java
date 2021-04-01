@@ -51,10 +51,23 @@ public class DogManager {
         return null;
     }
 
+    public IDog getEntityByUniqueId(String uniqueId) {
+        try {
+            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            IDog[] entities = ao.find(IDog.class, query);
+            if (entities != null && entities.length > 0) {
+                return entities[0];
+            }
+        } catch (Exception ex) {
+            String exs = ex.getMessage();
+        }
+        return null;
+    }
+
     public boolean updateDog(Dog model) {
         try {
             if (model != null) {
-                IDog entity = (IDog) getDogByUniqueId(model.getUniqueId());
+                IDog entity = getEntityByUniqueId(model.getUniqueId());
                 if (entity != null) {
                     model.toEntity(entity);
                     entity.save();

@@ -51,10 +51,23 @@ public class DogWalkerManager {
         return null;
     }
 
+    public IDogWalker getEntityByUniqueId(String uniqueId) {
+        try {
+            Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
+            IDogWalker[] entities = ao.find(IDogWalker.class, query);
+            if (entities != null && entities.length > 0) {
+                return entities[0];
+            }
+        } catch (Exception ex) {
+            String exs = ex.getMessage();
+        }
+        return null;
+    }
+
     public boolean updateDogWalker(DogWalker model) {
         try {
             if (model != null) {
-                IDogWalker entity = (IDogWalker) getDogWalkerByUniqueId(model.getUniqueId());
+                IDogWalker entity = getEntityByUniqueId(model.getUniqueId());
                 if (entity != null) {
                     model.toEntity(entity);
                     entity.save();

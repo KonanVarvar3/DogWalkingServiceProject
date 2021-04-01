@@ -9,6 +9,7 @@
     <artifactId>myPlugin</artifactId>
     <version>1.0.0.${buildNumber}</version>
 
+
     <organization>
         <name>Example Company</name>
         <url>http://www.example.com/</url>
@@ -78,6 +79,13 @@
             <groupId>com.atlassian.activeobjects</groupId>
             <artifactId>activeobjects-plugin</artifactId>
             <version>1.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.templaterenderer</groupId>
+            <artifactId>atlassian-template-renderer-api</artifactId>
+            <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -212,7 +220,7 @@
 
 
     <properties>
-        <jira.version>8.13.3</jira.version>
+        <jira.version>8.6.1</jira.version>
         <amps.version>8.1.0</amps.version>
         <plugin.testrunner.version>2.0.1</plugin.testrunner.version>
         <osgi.javaconfig.version>0.2.0</osgi.javaconfig.version>

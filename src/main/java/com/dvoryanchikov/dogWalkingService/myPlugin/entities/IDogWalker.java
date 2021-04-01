@@ -38,4 +38,5 @@ public interface IDogWalker extends Entity {
     public String getUniqueId();
 
     public void setUniqueId(String uniqueId);
+
 }

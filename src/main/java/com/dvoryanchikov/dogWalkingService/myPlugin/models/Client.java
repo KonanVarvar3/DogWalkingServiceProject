@@ -1,12 +1,13 @@
 package com.dvoryanchikov.dogWalkingService.myPlugin.models;
 
 import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IClient;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 public class Client extends Human {
+    @JsonProperty("address")
     private String address;
 
-    public Client() {
-    }
+    public Client() {}
 
     public String getAddress() {
         return address;

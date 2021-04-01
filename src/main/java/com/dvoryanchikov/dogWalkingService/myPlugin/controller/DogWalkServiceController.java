@@ -9,13 +9,13 @@ import com.dvoryanchikov.dogWalkingService.myPlugin.models.Client;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.Dog;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.DogWalker;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.RequestWalk;
-import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
+@Consumes({MediaType.APPLICATION_JSON})
+@Produces({MediaType.APPLICATION_JSON})
 @Path("/dogWalkingService")
 public class DogWalkServiceController {
 
@@ -38,25 +38,31 @@ public class DogWalkServiceController {
 
     @POST
     @Path("/createClient")
-    public Response createClient(@Valid @RequestBody Client client) {
+    public Response createClient(Client client) {
         return Response.ok(getClientImpl().createClient(client)).build();
     }
 
     @GET
-    @Path("/client/{uniqueId}")
-    public Response getClientByUniqueId(@PathVariable(value = "uniqueId") String uniqueId) {
+    @Path("/client")
+    public Response getClientByUniqueId(@QueryParam("uniqueId") String uniqueId) {
         return Response.ok(getClientImpl().getClientByUniqueId(uniqueId)).build();
+    }
+
+    @GET
+    @Path("/allClients")
+    public Response getAllClients() {
+        return Response.ok(getClientImpl().getAllClients()).build();
     }
 
     @PUT
     @Path("/updateClient")
-    public Response updateClient(@Valid @RequestBody Client client) {
+    public Response updateClient(Client client) {
         return Response.ok(getClientImpl().updateClient(client)).build();
     }
 
     @DELETE
-    @Path("/deleteClient/{uniqueId}")
-    public Response deleteClientByUniqueId(@PathVariable(value = "uniqueId") String uniqueId) {
+    @Path("/deleteClient")
+    public Response deleteClientByUniqueId(@QueryParam("uniqueId") String uniqueId) {
         return Response.ok(getClientImpl().deleteClient(uniqueId)).build();
     }
 
@@ -73,25 +79,25 @@ public class DogWalkServiceController {
 
     @POST
     @Path("/createDog")
-    public Response createDog(@Valid @RequestBody Dog dog) {
+    public Response createDog(Dog dog) {
         return Response.ok(getDogImpl().createDog(dog)).build();
     }
 
     @GET
-    @Path("/dog/{uniqueId}")
-    public Response getDogByUniqueId(@PathVariable(value = "uniqueId") String uniqueId) {
+    @Path("/dog")
+    public Response getDogByUniqueId(@QueryParam("uniqueId") String uniqueId) {
         return Response.ok(getDogImpl().getDogByUniqueId(uniqueId)).build();
     }
 
     @PUT
     @Path("/updateDog")
-    public Response updateDog(@Valid @RequestBody Dog dog) {
+    public Response updateDog(Dog dog) {
         return Response.ok(getDogImpl().updateDog(dog)).build();
     }
 
     @DELETE
-    @Path("/deleteDog/{uniqueId}")
-    public Response deleteDogByUniqueId(@PathVariable(value = "uniqueId") String uniqueId) {
+    @Path("/deleteDog")
+    public Response deleteDogByUniqueId(@QueryParam("uniqueId") String uniqueId) {
         return Response.ok(getDogImpl().deleteDog(uniqueId)).build();
     }
 
@@ -108,25 +114,25 @@ public class DogWalkServiceController {
 
     @POST
     @Path("/createDogWalker")
-    public Response createDogWalker(@Valid @RequestBody DogWalker dogWalker) {
+    public Response createDogWalker(DogWalker dogWalker) {
         return Response.ok(getDogWalkerImpl().createDogWalker(dogWalker)).build();
     }
 
     @GET
-    @Path("/dogWalker/{uniqueId}")
-    public Response getDogWalkerByUniqueId(@PathVariable(value = "uniqueId") String uniqueId) {
+    @Path("/dogWalker")
+    public Response getDogWalkerByUniqueId(@QueryParam("uniqueId") String uniqueId) {
         return Response.ok(getDogWalkerImpl().getDogWalkerByUniqueId(uniqueId)).build();
     }
 
     @PUT
     @Path("/updateDogWalker")
-    public Response updateDogWalker(@Valid @RequestBody DogWalker dogWalker) {
+    public Response updateDogWalker(DogWalker dogWalker) {
         return Response.ok(getDogWalkerImpl().updateDogWalker(dogWalker)).build();
     }
 
     @DELETE
-    @Path("/deleteDogWalker/{uniqueId}")
-    public Response deleteDogWalkerByUniqueId(@PathVariable(value = "uniqueId") String uniqueId) {
+    @Path("/deleteDogWalker")
+    public Response deleteDogWalkerByUniqueId(@QueryParam("uniqueId") String uniqueId) {
         return Response.ok(getDogWalkerImpl().deleteDogWalker(uniqueId)).build();
     }
 
@@ -143,25 +149,25 @@ public class DogWalkServiceController {
 
     @POST
     @Path("/createRequestWalk")
-    public Response createRequestWalk(@Valid @RequestBody RequestWalk requestWalk) {
+    public Response createRequestWalk(RequestWalk requestWalk) {
         return Response.ok(getRequestWalkImpl().createRequestWalk(requestWalk)).build();
     }
 
     @GET
-    @Path("/requestWalk/{uniqueId}")
-    public Response getRequestWalkByUniqueId(@PathVariable(value = "uniqueId") String uniqueId) {
+    @Path("/requestWalk")
+    public Response getRequestWalkByUniqueId(@QueryParam("uniqueId") String uniqueId) {
         return Response.ok(getRequestWalkImpl().getRequestWalkByUniqueId(uniqueId)).build();
     }
 
     @PUT
     @Path("/updateRequestWalk")
-    public Response updateRequestWalk(@Valid @RequestBody RequestWalk requestWalk) {
+    public Response updateRequestWalk(RequestWalk requestWalk) {
         return Response.ok(getRequestWalkImpl().updateRequestWalk(requestWalk)).build();
     }
 
     @DELETE
-    @Path("/deleteRequestWalk/{uniqueId}")
-    public Response deleteRequestWalkByUniqueId(@PathVariable(value = "uniqueId") String uniqueId) {
+    @Path("/deleteRequestWalk")
+    public Response deleteRequestWalkByUniqueId(@QueryParam("uniqueId") String uniqueId) {
         return Response.ok(getRequestWalkImpl().deleteRequestWalk(uniqueId)).build();
     }
 }

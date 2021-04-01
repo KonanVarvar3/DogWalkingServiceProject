@@ -2,17 +2,35 @@ package com.dvoryanchikov.dogWalkingService.myPlugin.models;
 
 import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IRequestWalk;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.enums.RequestWalkStatus;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.util.Date;
 
-public class RequestWalk extends ModelUniqueId{
+public class RequestWalk extends UniqID{
+    @JsonProperty("requestPlace")
     private String requestPlace;
+    @JsonProperty("timeWalk")
     private Date timeWalk;
+    @JsonProperty("pet")
     private String pet;
+    @JsonProperty("walkDuration")
     private int walkDuration;
+    @JsonProperty("requestWalkStatus")
     private RequestWalkStatus requestWalkStatus;
+    @JsonProperty("ClientId")
+    private String ClientId;
 
-    public RequestWalk(){}
+    public RequestWalk(){
+        requestWalkStatus = RequestWalkStatus.SEARCHING_WALKER;
+    }
+
+    public String getClientId() {
+        return ClientId;
+    }
+
+    public void setClientId(String clientId) {
+        ClientId = clientId;
+    }
 
     public String getRequestPlace() {
         return requestPlace;
@@ -61,6 +79,7 @@ public class RequestWalk extends ModelUniqueId{
         entity.setWalkDuration(this.getWalkDuration());
         entity.setRequestWalkStatus(this.getRequestWalkStatus());
         entity.setUniqueId(this.getUniqueId());
+        entity.setClientId(this.getClientId());
     }
 
     public static RequestWalk fromEntity(IRequestWalk entity){
@@ -71,6 +90,7 @@ public class RequestWalk extends ModelUniqueId{
         requestWalk.setWalkDuration(entity.getWalkDuration());
         requestWalk.setRequestWalkStatus(entity.getRequestWalkStatus());
         requestWalk.setUniqueId(entity.getUniqueId());
+        requestWalk.setClientId(entity.getClientId());
         return requestWalk;
     }
 }

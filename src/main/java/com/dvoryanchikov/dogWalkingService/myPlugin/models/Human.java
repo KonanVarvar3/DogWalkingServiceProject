@@ -1,16 +1,31 @@
 package com.dvoryanchikov.dogWalkingService.myPlugin.models;
 
-import java.util.Date;
+import org.codehaus.jackson.annotate.JsonProperty;
 
-public class Human extends ModelUniqueId{
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
+public class Human extends UniqID{
+
+    @JsonProperty("lastName")
     private String lastName;
+
+    @JsonProperty("name")
     private String name;
+
+    @JsonProperty("middleName")
     private String middleName;
+
+    @JsonProperty("birthDate")
     private Date birthDate;
+
+    @JsonProperty("phoneNumber")
     private String phoneNumber;
+
+    @JsonProperty("email")
     private String email;
 
-    public Human(){ }
 
     public String getLastName() {
         return lastName;
@@ -41,6 +56,8 @@ public class Human extends ModelUniqueId{
     }
 
     public void setBirthDate(Date birthDate) {
+        //SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy ");
+        //this.birthDate = formatter.format(birthDate);
         this.birthDate = birthDate;
     }
 
@@ -59,4 +76,5 @@ public class Human extends ModelUniqueId{
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

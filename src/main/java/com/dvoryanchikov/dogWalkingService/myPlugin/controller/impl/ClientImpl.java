@@ -21,6 +21,10 @@ public class ClientImpl {
         return clientService.getClientByUniqueId(uniqueId);
     }
 
+    public Client[] getAllClients(){
+        return clientService.getAllClients();
+    }
+
     public boolean createClient(Client model){
         return clientService.createClient(model);
     }
