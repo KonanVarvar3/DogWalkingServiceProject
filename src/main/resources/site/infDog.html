@@ -1,0 +1,81 @@
+<html>
+<head>
+    <meta name="decorator" content="atl.general"/>
+    <title>
+        Dogs
+    </title>
+
+    <script src="/plugins/servlet/servlet-inf/site/js/scriptInfDog.js"></script>
+
+    <link href="/plugins/servlet/servlet-inf/site/css/styleDog.css"/>
+
+</head>
+<body>
+<h1>Search dog</h1>
+<br>
+<form id="myFormD" action="#" onsubmit="formFindDog()">
+    <table id="findDog">
+        <tr>
+            <td>Enter unique id dog</td>
+        </tr>
+        <tr>
+            <td><input type=text id="uniqueIdD"></td>
+        </tr>
+        <tr>
+            <td>
+                <input type=submit name="submit" value="find" id="newD">
+                <input type="button" onclick="addFromBdD()" value="get all dogs">
+                <input type="button" onclick="clearDog()" value="hide found dog">
+                <input type="button" onclick="clearAllDog()" value="hide all dogs">
+            </td>
+        </tr>
+    </table>
+</form>
+<br>
+
+<div id="findTableD"></div>
+
+<br>
+<div id="dogTable"></div>
+
+<div id="newDg">Dog has been created!</div>
+
+<br>
+<table>
+    <tr>
+        <td>Dog name:</td>
+        <td><input type="text" id="dogName" placeholder="Default"></td>
+    </tr>
+    <tr>
+        <td>Gender:</td>
+        <td><input type="text" id="gender" placeholder="Default"></td>
+    </tr>
+    <tr>
+        <td>Dog Birthday:</td>
+        <td><input type="text" id="dogBirthDate" placeholder="Default"></td>
+    </tr>
+    <tr>
+        <td>Breed:</td>
+        <td><input type="text" id="breed" placeholder="yyyy-mm-dd"></td>
+    </tr>
+    <tr>
+        <td>Color:</td>
+        <td><input type="text" id="color" placeholder="Default"></td>
+    </tr>
+    <tr>
+        <td>Dog character:</td>
+        <td><input type="text" id="dogCharacter" placeholder="Default"></td>
+    </tr>
+    <tr>
+        <td>Dog status:</td>
+        <td><input type="text" id="dogStatus" placeholder="Default"></td>
+    </tr>
+    <tr>
+        <td><input type="button" onclick="crtD()" value="create"></td>
+    </tr>
+</table>
+
+<br>
+<div id="outD"></div>
+</body>
+</html>

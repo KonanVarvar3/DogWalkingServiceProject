@@ -5,17 +5,9 @@
             Clients
         </title>
 
-        <script type="text/javascript" src="/plugins/servlet/servlet-inf/js/scriptInfClient.js"></script>
+        <script src="/plugins/servlet/servlet-inf/site/js/scriptInfClient.js" type="text/javascript"></script>
 
-        <link href="/plugins/servlet/servlet-inf/css/myPlugin.css" rel="stylesheet"/>
-
-<!--        <style>-->
-<!--            #newClt{-->
-<!--                color: green;-->
-<!--                margin-left: 45%;-->
-<!--                display:none;-->
-<!--            }-->
-<!--        </style>-->
+        <link href="/plugins/servlet/servlet-inf/site/css/styleClient.css" rel="stylesheet"/>
 
     </head>
     <body>
@@ -33,27 +25,13 @@
                     <td>
                         <input type=submit name="submit" value="find" id="new">
                         <input type="button" onclick="addFromBd()" value="get all clients">
-                        <input type="button" onclick="clearClient()" value="clear found client">
-                        <input type="button" onclick="clearAllClient()" value="clear all clients">
+                        <input type="button" onclick="clearClient()" value="hide found client">
+                        <input type="button" onclick="clearAllClient()" value="hide all clients">
                     </td>
                 </tr>
             </table>
         </form>
         <br>
-
-<!--        <script>-->
-<!--            function addFromBd(){-->
-
-<!--                document.getElementById("newClient").style.display = "block";-->
-
-<!--                setTimeout(function(){-->
-<!--                    document.getElementById("newClient").style.display = "none";-->
-<!--                    }, 1000);-->
-
-<!--                document.getElementById("lastName").value = "";-->
-<!--            }-->
-
-<!--        </script>-->
 
         <div id="findTable"></div>
 
@@ -93,7 +71,7 @@
                 <td><input type="text" id="address" placeholder="Default"></td>
             </tr>
             <tr>
-                <td><input type="button" onclick="crt()" value="send"></td>
+                <td><input type="button" onclick="crt()" value="create"></td>
             </tr>
         </table>
 

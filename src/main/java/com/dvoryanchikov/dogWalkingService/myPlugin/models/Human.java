@@ -27,6 +27,10 @@ public class Human extends UniqID{
     private String email;
 
 
+    public Human() {
+
+    }
+
     public String getLastName() {
         return lastName;
     }

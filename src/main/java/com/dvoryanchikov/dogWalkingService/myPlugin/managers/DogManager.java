@@ -12,11 +12,12 @@ public class DogManager {
         this.ao = ao;
     }
 
-    public boolean createDog(Dog model) {
+    public boolean save(Dog model) {
         try {
             IDog entity = ao.create(IDog.class);
             model.toEntity(entity);
             entity.save();
+
             return true;
         } catch (Exception ex) {
             String exs = ex.getMessage();
@@ -24,7 +25,7 @@ public class DogManager {
         return false;
     }
 
-    public boolean deleteDogByUniqueId(String uniqueId) {
+    public boolean deleteByUniqueId(String uniqueId) {
         try {
             Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
             IDog[] entities = ao.find(IDog.class, query);
@@ -38,13 +39,35 @@ public class DogManager {
         return false;
     }
 
-    public Dog getDogByUniqueId(String uniqueId) {
+    public Dog getByUniqueId(String uniqueId) {
         try {
             Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
             IDog[] entities = ao.find(IDog.class, query);
             if (entities != null && entities.length > 0) {
                 return Dog.fromEntity(entities[0]);
             }
+        } catch (Exception ex) {
+            String exs = ex.getMessage();
+        }
+        return null;
+    }
+
+    public Dog[] getAll() {
+        try {
+            Query query = Query.select();
+            IDog[] entities = ao.find(IDog.class, query);
+
+            if (entities != null && entities.length > 0) {
+
+                Dog[] dogs = new Dog[entities.length];
+
+                for (int i = 0; i < entities.length; i++) {
+
+                    dogs[i] = Dog.fromEntity(entities[i]);
+                }
+                return dogs;
+            }
+
         } catch (Exception ex) {
             String exs = ex.getMessage();
         }
@@ -64,7 +87,7 @@ public class DogManager {
         return null;
     }
 
-    public boolean updateDog(Dog model) {
+    public boolean update(Dog model) {
         try {
             if (model != null) {
                 IDog entity = getEntityByUniqueId(model.getUniqueId());

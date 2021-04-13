@@ -89,6 +89,12 @@ public class DogWalkServiceController {
         return Response.ok(getDogImpl().getDogByUniqueId(uniqueId)).build();
     }
 
+    @GET
+    @Path("/allDogs")
+    public Response getAllDogs(){
+        return Response.ok(getDogImpl().getAllDogs()).build();
+    }
+
     @PUT
     @Path("/updateDog")
     public Response updateDog(Dog dog) {
@@ -122,6 +128,12 @@ public class DogWalkServiceController {
     @Path("/dogWalker")
     public Response getDogWalkerByUniqueId(@QueryParam("uniqueId") String uniqueId) {
         return Response.ok(getDogWalkerImpl().getDogWalkerByUniqueId(uniqueId)).build();
+    }
+
+    @GET
+    @Path("/allDogWalkers")
+    public Response getAllDogWalkers(){
+        return Response.ok(getDogWalkerImpl().getAllDogWalkers()).build();
     }
 
     @PUT

@@ -25,7 +25,7 @@ public class ClientImpl {
         return clientService.getAllClients();
     }
 
-    public boolean createClient(Client model){
+    public boolean createClient(Client model) {
         return clientService.createClient(model);
     }
 

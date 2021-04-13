@@ -1,0 +1,81 @@
+<html>
+<head>
+    <meta name="decorator" content="atl.general"/>
+    <title>
+        Dogs
+    </title>
+
+    <script type="text/javascript" src="/plugins/servlet/servlet-inf/site/js/scriptInfDogWalker.js"></script>
+
+    <link href="/plugins/servlet/servlet-inf/site/css/styleDogWalker.css" rel="stylesheet"/>
+
+</head>
+<body>
+<h1>Search dog walker</h1>
+<br>
+<form id="myFormDW" action="#" onsubmit="formFindDogWalker()">
+    <table id="findDogWalker">
+        <tr>
+            <td>Enter unique id dog walker</td>
+        </tr>
+        <tr>
+            <td><input type=text id="uniqueIdDW"></td>
+        </tr>
+        <tr>
+            <td>
+                <input type=submit name="submit" value="find" id="newDW">
+                <input type="button" onclick="addFromBdDW()" value="get all dog walkers">
+                <input type="button" onclick="clearDogWalker()" value="hide found dog walker">
+                <input type="button" onclick="clearAllDogWalkers()" value="hide all dog walkers">
+            </td>
+        </tr>
+    </table>
+</form>
+<br>
+
+<div id="findTableDW"></div>
+
+<br>
+<div id="dogWalkerTable"></div>
+
+<div id="newDgWlkr">Dog walker has been created!</div>
+
+<br>
+<table>
+    <tr>
+        <td>Last name:</td>
+        <td><input type="text" id="lastNameDW" placeholder="Default"></td>
+    </tr>
+    <tr>
+        <td>Name:</td>
+        <td><input type="text" id="nameDW" placeholder="Default"></td>
+    </tr>
+    <tr>
+        <td>Middle name:</td>
+        <td><input type="text" id="middleNameDW" placeholder="Default"></td>
+    </tr>
+    <tr>
+        <td>Birth date:</td>
+        <td><input type="text" id="birthDateDW" placeholder="yyyy-mm-dd"></td>
+    </tr>
+    <tr>
+        <td> number:</td>
+        <td><input type="text" id="phoneNumberDW" placeholder="Default"></td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td><input type="text" id="emailDW" placeholder="Default"></td>
+    </tr>
+    <tr>
+        <td>Status:</td>
+        <td><input type="text" id="statusDW" placeholder="Default"></td>
+    </tr>
+    <tr>
+        <td><input type="button" onclick="crtDW()" value="create"></td>
+    </tr>
+</table>
+
+<br>
+<div id="outDW"></div>
+</body>
+</html>

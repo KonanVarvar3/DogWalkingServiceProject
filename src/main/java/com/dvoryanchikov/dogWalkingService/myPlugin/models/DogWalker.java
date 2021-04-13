@@ -5,6 +5,7 @@ import com.dvoryanchikov.dogWalkingService.myPlugin.models.enums.DogWalkerStatus
 import org.codehaus.jackson.annotate.JsonProperty;
 
 public class DogWalker extends Human{
+
     @JsonProperty("dogWalkerStatus")
     private DogWalkerStatus dogWalkerStatus;
 

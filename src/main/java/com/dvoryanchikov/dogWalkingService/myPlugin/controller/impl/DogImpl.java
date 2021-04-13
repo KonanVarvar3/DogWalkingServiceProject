@@ -21,6 +21,10 @@ public class DogImpl {
         return dogService.getDogByUniqueId(uniqueId);
     }
 
+    public Dog[] getAllDogs(){
+        return dogService.getAllDogs();
+    }
+
     public boolean createDog(Dog model){
         return dogService.createDog(model);
     }

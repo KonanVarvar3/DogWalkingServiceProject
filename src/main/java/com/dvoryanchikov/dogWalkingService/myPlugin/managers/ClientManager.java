@@ -1,6 +1,7 @@
 package com.dvoryanchikov.dogWalkingService.myPlugin.managers;
 
 import com.atlassian.activeobjects.external.ActiveObjects;
+
 import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IClient;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.Client;
 import net.java.ao.Query;
@@ -17,12 +18,13 @@ public class ClientManager {
         return new ClientManager(ao);
     }
 
-    public boolean createClient(Client model) {
+    public boolean save(Client model) {
 
         try {
             IClient entity = ao.create(IClient.class);
             model.toEntity(entity);
             entity.save();
+
             return true;
 
         } catch (Exception ex) {
@@ -31,7 +33,7 @@ public class ClientManager {
         return false;
     }
 
-    public boolean deleteClientByUniqueId(String uniqueId) {
+    public boolean deleteByUniqueId(String uniqueId) {
 
         try {
             Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
@@ -47,7 +49,7 @@ public class ClientManager {
         return false;
     }
 
-    public Client getClientByUniqueId(String uniqueId) {
+    public Client getByUniqueId(String uniqueId) {
         try {
             Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
             IClient[] entities = ao.find(IClient.class, query);
@@ -60,7 +62,7 @@ public class ClientManager {
         return null;
     }
 
-    public Client[] getAllClients() {
+    public Client[] getAll() {
         try {
             Query query = Query.select();
             IClient[] entities = ao.find(IClient.class, query);
@@ -94,7 +96,7 @@ public class ClientManager {
         return null;
     }
 
-    public boolean updateClient(Client model) {
+    public boolean update(Client model) {
 
         try {
             if (model != null) {

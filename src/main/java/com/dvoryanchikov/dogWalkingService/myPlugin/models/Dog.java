@@ -7,20 +7,28 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import java.util.Date;
 
 public class Dog extends UniqID{
+
     @JsonProperty("dogName")
     private String dogName;
+
     @JsonProperty("gender")
     private String gender;
+
     @JsonProperty("dogBirthDate")
     private Date dogBirthDate;
+
     @JsonProperty("breed")
     private String breed;
+
     @JsonProperty("color")
     private String color;
+
     @JsonProperty("dogCharacter")
     private String dogCharacter;
+
     @JsonProperty("dogStatus")
     private DogStatus dogStatus;
+
     @JsonProperty("ownerId")
     private String ownerId;
 

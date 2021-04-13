@@ -21,6 +21,10 @@ public class DogWalkerImpl {
         return dogWalkerService.getDogWalkerByUniqueId(uniqueId);
     }
 
+    public DogWalker[] getAllDogWalkers(){
+        return dogWalkerService.getAllDogWalkers();
+    }
+
     public boolean createDogWalker(DogWalker model){
         return dogWalkerService.createDogWalker(model);
     }

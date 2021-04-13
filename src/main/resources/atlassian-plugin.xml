@@ -14,8 +14,12 @@
     <web-resource key="myPlugin-resources" name="myPlugin Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
         
-        <resource type="download" name="myPlugin.css" location="/css/myPlugin.css"/>
-        <resource type="download" name="scriptInfClient.js" location="/js/scriptInfClient.js"/>
+        <resource type="download" name="styleClient.css" location="/site/css/styleClient.css"/>
+        <resource type="download" name="styleDog.css" location="/site/css/styleDog.css"/>
+        <resource type="download" name="styleDogWalker.css" location="/site/css/styleDogWalker.css"/>
+        <resource type="download" name="scriptInfClient.js" location="/site/js/scriptInfClient.js"/>
+        <resource type="download" name="scriptInfDog.js" location="/site/js/scriptInfDog.js"/>
+        <resource type="download" name="scriptInfDogWalker.js" location="/site/js/scriptInfDogWalker.js"/>
         <resource type="download" name="images/" location="/images"/>
 
         <context>atl.general</context>
@@ -30,14 +34,12 @@
         <entity>com.dvoryanchikov.dogWalkingService.myPlugin.entities.IRequestWalk</entity>
     </ao>
 
-
-
     <rest key="rest" path="/dogWalkingRest" version="1.0"/>
 
     <servlet name="Servlet for dog walking service"
              class="com.dvoryanchikov.dogWalkingService.myPlugin.servlet.ServletDogWalking"
              key="servlet-service">
-        <url-pattern>/servlet-inf/*</url-pattern>
+        <url-pattern>/servlet-inf/site/*</url-pattern>
     </servlet>
 
     <component key="client-manager" class="com.dvoryanchikov.dogWalkingService.myPlugin.managers.ClientManager" />
