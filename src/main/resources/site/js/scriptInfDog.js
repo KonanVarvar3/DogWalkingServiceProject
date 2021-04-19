@@ -1,4 +1,4 @@
-let dog;
+
 let objectDog;
 
 let newDog = {
@@ -7,8 +7,8 @@ let newDog = {
     dogBirthDate:"",
     breed:"",
     color:"",
-    dogCharacter:"",
-    dogStatus:""
+    dogCharacter:""
+    // dogStatus:""
 }
 
 function clearDog() {
@@ -71,10 +71,9 @@ function crtD() {
     newDog.breed = document.getElementById("breed").value;
     newDog.color = document.getElementById("color").value;
     newDog.dogCharacter = document.getElementById("dogCharacter").value;
-    newDog.dogStatus = document.getElementById("dogStatus").value;
+    // newDog.dogStatus = document.getElementById("dogStatus").value;
 
     objectDog = JSON.stringify(newDog);
-    //alert(objectDog);
 
     AJS.$.ajax({
         type: 'post',
@@ -90,7 +89,7 @@ function crtD() {
             document.getElementById("breed").value = "";
             document.getElementById("color").value = "";
             document.getElementById("dogCharacter").value = "";
-            document.getElementById("dogStatus").value = "";
+            //document.getElementById("dogStatus").value = "";
 
             document.getElementById("newDg").style.display = "block";
 
@@ -159,7 +158,7 @@ function addDataFindD(array,table) {
             case 2: key = array.gender;
                 break;
 
-            case 3: key = array.dogBirthDate.format("dd.mm.yyyy");
+            case 3: key = array.dogBirthDate;
                 break;
 
             case 4: key = array.breed;

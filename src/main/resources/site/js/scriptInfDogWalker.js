@@ -1,5 +1,4 @@
 
-let dogWalker;
 let objectDogWalker;
 
 let newDogWalker = {
@@ -8,8 +7,8 @@ let newDogWalker = {
     middleName:"",
     birthDate:"",
     phoneNumber:"",
-    email:"",
-    status:""
+    email:""
+    // status:""
 }
 
 function clearDogWalker() {
@@ -65,16 +64,15 @@ function crtDW() {
     let out = document.getElementById("outDW");
     out.innerHTML="";
 
-    newClient.lastName = document.getElementById("lastNameDW").value;
-    newClient.name = document.getElementById("nameDW").value;
-    newClient.middleName = document.getElementById("middleNameDW").value;
-    newClient.birthDate = document.getElementById("birthDateDW").value;
-    newClient.phoneNumber = document.getElementById("phoneNumberDW").value;
-    newClient.email = document.getElementById("emailDW").value;
-    newClient.address = document.getElementById("statusDW").value;
+    newDogWalker.lastName = document.getElementById("lastNameDW").value;
+    newDogWalker.name = document.getElementById("nameDW").value;
+    newDogWalker.middleName = document.getElementById("middleNameDW").value;
+    newDogWalker.birthDate = document.getElementById("birthDateDW").value;
+    newDogWalker.phoneNumber = document.getElementById("phoneNumberDW").value;
+    newDogWalker.email = document.getElementById("emailDW").value;
+    // newClient.status = document.getElementById("statusDW").value;
 
     objectDogWalker = JSON.stringify(newDogWalker);
-    //alert(objectClient);
 
     AJS.$.ajax({
         type: 'post',
@@ -90,7 +88,7 @@ function crtDW() {
             document.getElementById("birthDateDW").value = "";
             document.getElementById("phoneNumberDW").value = "";
             document.getElementById("emailDW").value = "";
-            document.getElementById("statusDW").value = "";
+            // document.getElementById("statusDW").value = "";
 
             document.getElementById("newDgWlkr").style.display = "block";
 
@@ -162,7 +160,7 @@ function addDataFindDW(array,table) {
             case 3: key = array.middleName;
                 break;
 
-            case 4: key = array.birthDate.format("dd.mm.yyyy");
+            case 4: key = array.birthDate;
                 break;
 
             case 5: key = array.phoneNumber;

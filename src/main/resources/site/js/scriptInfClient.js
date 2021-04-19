@@ -1,5 +1,4 @@
 
-let client;
 let objectClient;
 
 let newClient = {
@@ -162,7 +161,7 @@ function addDataFind(array,table) {
             case 3: key = array.middleName;
                 break;
 
-            case 4: key = array.birthDate.format("dd.mm.yyyy");
+            case 4: key = array.birthDate;
                 break;
 
             case 5: key = array.phoneNumber;
