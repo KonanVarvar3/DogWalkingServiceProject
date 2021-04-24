@@ -17,13 +17,13 @@ public class ClientIssueService{
             issueInputParameters.setIssueTypeId(IssueConstants.ISSUE_TYPE_CLIENT_ID.id);
             issueInputParameters.setSummary(client.getName() + " " + client.getLastName());
 
-            issueInputParameters.addCustomFieldValue("customfield_10107", client.getName());
-            issueInputParameters.addCustomFieldValue("customfield_10108", client.getLastName());
-            issueInputParameters.addCustomFieldValue("customfield_10109", client.getMiddleName());
-            issueInputParameters.addCustomFieldValue("customfield_10110", client.getBirthDate().toString());
-            issueInputParameters.addCustomFieldValue("customfield_10113", client.getPhoneNumber());
-            issueInputParameters.addCustomFieldValue("customfield_10111", client.getEmail());
-            issueInputParameters.addCustomFieldValue("customfield_10112", client.getAddress());
+            issueInputParameters.addCustomFieldValue("customfield_10200", client.getName());
+            issueInputParameters.addCustomFieldValue("customfield_10201", client.getLastName());
+            issueInputParameters.addCustomFieldValue("customfield_10202", client.getMiddleName());
+            issueInputParameters.addCustomFieldValue("customfield_10203", client.getBirthDate().toString());
+            issueInputParameters.addCustomFieldValue("customfield_10204", client.getPhoneNumber());
+            issueInputParameters.addCustomFieldValue("customfield_10205", client.getEmail());
+            issueInputParameters.addCustomFieldValue("customfield_10206", client.getAddress());
 
             IssueService.CreateValidationResult createValidationResult = issueService
                     .validateCreate(ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser(),

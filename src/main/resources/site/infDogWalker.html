@@ -1,6 +1,8 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="decorator" content="atl.general"/>
+
     <title>
         DogWalkers
     </title>
@@ -11,71 +13,155 @@
 
 </head>
 <body>
-<h1>Search dog walker</h1>
-<br>
-<form id="myFormDW" action="#" onsubmit="formFindDogWalker()">
-    <table id="findDogWalker">
+
+<div id="menu">
+    <table id="menuTable">
         <tr>
-            <td>Enter unique id dog walker</td>
-        </tr>
-        <tr>
-            <td><input type=text id="uniqueIdDW"></td>
+            <td>
+                Menu
+            </td>
         </tr>
         <tr>
             <td>
-                <input type=submit name="submit" value="find" id="newDW">
-                <input type="button" onclick="addFromBdDW()" value="get all dog walkers">
-                <input type="button" onclick="clearDogWalker()" value="hide found dog walker">
-                <input type="button" onclick="clearAllDogWalkers()" value="hide all dog walkers">
+                <a href="/plugins/servlet/servlet-inf/site/mainPage.html">
+                    <input type="button" id="menuButton1" value="Back to main page">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/infClient.html">
+                    <input type="button" id="menuButton2" value="Go to clients">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/infDog.html">
+                    <input type="button" id="menuButton3" value="Go to pets">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/mainPage.html">
+                    <input type="button" id="menuButton4" value="Go to request">
+                </a>
             </td>
         </tr>
     </table>
-</form>
-<br>
+</div>
 
-<div id="findTableDW"></div>
+<div id="newDgWlkr">
+    Dog walker has been created!
+</div>
 
-<br>
-<div id="dogWalkerTable"></div>
+<div id="contentDogWalkerPage">
+    <h1>Work with dogwalkers</h1>
 
-<div id="newDgWlkr">Dog walker has been created!</div>
+    <h2>Search dog walker</h2>
 
-<br>
-<table>
-    <tr>
-        <td>Last name:</td>
-        <td><input type="text" id="lastNameDW" placeholder="Default"></td>
-    </tr>
-    <tr>
-        <td>Name:</td>
-        <td><input type="text" id="nameDW" placeholder="Default"></td>
-    </tr>
-    <tr>
-        <td>Middle name:</td>
-        <td><input type="text" id="middleNameDW" placeholder="Default"></td>
-    </tr>
-    <tr>
-        <td>Birth date:</td>
-        <td><input type="text" id="birthDateDW" placeholder="yyyy-mm-dd"></td>
-    </tr>
-    <tr>
-        <td> number:</td>
-        <td><input type="text" id="phoneNumberDW" placeholder="Default"></td>
-    </tr>
-    <tr>
-        <td>Email:</td>
-        <td><input type="text" id="emailDW" placeholder="Default"></td>
-    </tr>
-<!--    <tr>-->
-<!--        <td>Status:</td>-->
-<!--        <td><input type="text" id="statusDW" placeholder="Default"></td>-->
-<!--    </tr>-->
-    <tr>
-        <td><input type="button" onclick="crtDW()" value="create"></td>
-    </tr>
-</table>
+    <form id="myFormDW" action="#" onsubmit="formFindDogWalker()">
+        <table id="findDogWalker">
+            <tr>
+                <td>Enter unique id dog walker</td>
+            </tr>
+            <tr>
+                <td><input type=text id="uniqueIdDW"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type=submit name="submit" value="find" id="newDW">
+                    <input type="button" onclick="addFromBdDW()" value="get all dog walkers">
+                    <input type="button" onclick="clearDogWalker()" value="hide found dog walker">
+                    <input type="button" onclick="clearAllDogWalkers()" value="hide all dog walkers">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
 
-<br>
-<div id="outDW"></div>
+    <div id="findTableDW"></div>
+
+    <br>
+    <div id="dogWalkerTable"></div>
+
+    <h2>Create dogwalker</h2>
+
+    <table id="createDogwalker">
+        <tr>
+            <td>
+                Last name:
+            </td>
+            <td>
+                <input type="text" onclick="inputValueLastNameDW()" class="inputDogWalker"
+                       id="lastNameDW" placeholder="Default">
+                <div id="inputLastNameDW"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Name:
+            </td>
+            <td>
+                <input type="text" onclick="inputValueNameDW()" class="inputDogWalker"
+                       id="nameDW" placeholder="Default">
+                <div id="inputNameDW"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Middle name:
+            </td>
+            <td><input type="text" onclick="inputValueMiddleNameDW()" class="inputDogWalker"
+                       id="middleNameDW" placeholder="Default">
+                <div id="inputMiddleNameDW"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Birth date:
+            </td>
+            <td>
+                <input type="date" onclick="inputValueBirthdayDW()"
+                       class="form-control, inputDogWalker" id="birthDateDW" name="date" required>
+                <div id="inputBirthdayDW"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Phone number:
+            </td>
+            <td>
+                <input type="text" onclick="inputValuePhoneDW()" class="inputDogWalker"
+                       id="phoneNumberDW" placeholder="Default">
+                <div id="inputPhoneDW"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Email:
+            </td>
+            <td>
+                <input type="text" onclick="inputValueEmailDW()" class="inputDogWalker"
+                       id="emailDW" placeholder="something@mail.ru">
+                <div id="inputEmailDW"></div>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="button" id="createButton" onclick="crtDW()" value="create"></td>
+        </tr>
+    </table>
+
+    <br>
+    <div id="outDW"></div>
+
+    <div id="footerDogWalker">&copy; Dvoryanchikov Sergey</div>
+</div>
+<div id="Container">
+    <div id="header"></div>
+    <div id="footer"></div>
+    <div id="content"></div>
+</div>
 </body>
 </html>

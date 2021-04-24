@@ -1,81 +1,177 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta name="decorator" content="atl.general"/>
-        <title>
-            Clients
-        </title>
+<head>
+    <meta name="decorator" content="atl.general"/>
+    <title>
+        Clients
+    </title>
 
-        <script src="/plugins/servlet/servlet-inf/site/js/scriptInfClient.js" type="text/javascript"></script>
+    <script src="/plugins/servlet/servlet-inf/site/js/scriptInfClient.js" type="text/javascript"></script>
+    <link href="/plugins/servlet/servlet-inf/site/css/styleClient.css" rel="stylesheet"/>
 
-        <link href="/plugins/servlet/servlet-inf/site/css/styleClient.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="menu">
+    <table id="menuTable">
+        <tr>
+            <td>
+                Menu
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/mainPage.html">
+                    <input type="button" id="menuButton1" value="Back to main page">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/infDog.html">
+                    <input type="button" id="menuButton2" value="Go to pet">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/infDogWalker.html">
+                    <input type="button" id="menuButton3" value="Go to dogwalkers">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/mainPage.html">
+                    <input type="button" id="menuButton4" value="Go to request">
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
 
-    </head>
-    <body>
-        <h1>Search client</h1>
-        <br>
-        <form id="myForm" action="#" onsubmit="formFindClient()">
-            <table id="findClient">
-                <tr>
-                    <td>Enter unique id client</td>
-                </tr>
-                <tr>
-                    <td><input type=text id="uniqueId"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type=submit name="submit" value="find" id="new">
-                        <input type="button" onclick="addFromBd()" value="get all clients">
-                        <input type="button" onclick="clearClient()" value="hide found client">
-                        <input type="button" onclick="clearAllClient()" value="hide all clients">
-                    </td>
-                </tr>
-            </table>
-        </form>
-        <br>
+<div id="newClt">
+    Client has been created!
+</div>
 
-        <div id="findTable"></div>
+<div id="contentClientPage">
 
-        <br>
-        <div id="clientTable"></div>
+    <h1>Work with clients</h1>
 
-        <div id="newClt">Client has been created!</div>
+    <h2>Search client</h2>
 
-        <br>
-        <table>
+    <form id="myForm" action="#" onsubmit="formFindClient()">
+        <table id="findClient">
             <tr>
-                <td>Last name:</td>
-                <td><input type="text" id="lastName" placeholder="Default"></td>
+                <td>Enter unique id client</td>
             </tr>
             <tr>
-                <td>Name:</td>
-                <td><input type="text" id="name" placeholder="Default"></td>
+                <td><input type=text id="uniqueId"></td>
             </tr>
             <tr>
-                <td>Middle name:</td>
-                <td><input type="text" id="middleName" placeholder="Default"></td>
-            </tr>
-            <tr>
-                <td>Birth date:</td>
-                <td><input type="text" id="birthDate" placeholder="yyyy-mm-dd"></td>
-            </tr>
-            <tr>
-                <td> number:</td>
-                <td><input type="text" id="phoneNumber" placeholder="Default"></td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td><input type="text" id="email" placeholder="Default"></td>
-            </tr>
-            <tr>
-                <td>Address:</td>
-                <td><input type="text" id="address" placeholder="Default"></td>
-            </tr>
-            <tr>
-                <td><input type="button" onclick="crt()" value="create"></td>
+                <td>
+                    <input type=submit name="submit" value="find" id="new">
+                    <input type="button" onclick="addFromBd()" value="get all clients">
+                    <input type="button" onclick="clearClient()" value="hide found client">
+                    <input type="button" onclick="clearAllClient()" value="hide all clients">
+                </td>
             </tr>
         </table>
+    </form>
+    <br>
 
-        <br>
-        <div id="out"></div>
-    </body>
+    <div id="findTable"></div>
+
+    <br>
+    <div id="clientTable"></div>
+
+    <h2>Create client</h2>
+    <table id="createClientTable">
+        <tr>
+            <td>
+                Last name:
+            </td>
+            <td>
+                <input type="text" onclick="inputValueLastName()" class="inputClient"
+                       id="lastName" placeholder="Default">
+                <div id="inputLastName"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Name:
+            </td>
+            <td>
+                <input type="text" onclick="inputValueName()" class="inputClient"
+                       id="name" placeholder="Default">
+                <div id="inputName"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Middle name:
+            </td>
+            <td>
+                <input type="text" onclick="inputValueMiddleName()" class="inputClient"
+                       id="middleName" placeholder="Default">
+                <div id="inputMiddleName"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Birth date:
+            </td>
+            <td>
+                <input type="date" onclick="inputValueBirthday()"
+                       class="form-control, inputClient" id="birthDate" name="date" required>
+                <div id="inputBirthday"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                number:
+            </td>
+            <td>
+                <input type="text" onclick="inputValuePhone()" class="inputClient"
+                       id="phoneNumber" placeholder="Default">
+                <div id="inputPhone"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Email:
+            </td>
+            <td>
+                <input type="text" onclick="inputValueEmail()" class="inputClient"
+                       id="email" placeholder="something@mail.ru">
+                <div id="inputEmail"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Address:
+            </td>
+            <td>
+                <input type="text" onclick="inputValueAddress()" class="inputClient"
+                       id="address" placeholder="Default">
+                <div id="inputAddress"></div>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="button" id="createButton" onclick="crt()" value="create"></td>
+        </tr>
+    </table>
+
+    <br>
+    <div id="out"></div>
+
+    <div id="footerClient">&copy; Dvoryanchikov Sergey</div>
+</div>
+
+<div id="Container">
+    <div id="header"></div>
+    <div id="footer"></div>
+    <div id="content"></div>
+</div>
+
+</body>
 </html>

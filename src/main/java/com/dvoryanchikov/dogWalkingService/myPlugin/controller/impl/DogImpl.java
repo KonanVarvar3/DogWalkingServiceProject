@@ -2,6 +2,7 @@ package com.dvoryanchikov.dogWalkingService.myPlugin.controller.impl;
 
 import com.atlassian.activeobjects.external.ActiveObjects;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.Dog;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.common.StatusResponse;
 import com.dvoryanchikov.dogWalkingService.myPlugin.services.DogService;
 
 public class DogImpl {
@@ -25,15 +26,33 @@ public class DogImpl {
         return dogService.getAllDogs();
     }
 
-    public boolean createDog(Dog model){
-        return dogService.createDog(model);
+    public StatusResponse createDog(Dog model){
+        try{
+            dogService.createDog(model);
+            return StatusResponse.createSuccess("Dog: " + model.getDogName() + " " + model.getBreed());
+
+        }catch (Exception ex){
+            return StatusResponse.createFail(ex.getMessage());
+        }
     }
 
-    public boolean deleteDog(String uniqueId){
-        return dogService.deleteDogByUniqueId(uniqueId);
+    public StatusResponse deleteDog(String uniqueId){
+        try{
+            dogService.deleteDogByUniqueId(uniqueId);
+            return StatusResponse.deleteSuccess("Dog: " + uniqueId);
+
+        }catch (Exception ex){
+            return StatusResponse.deleteFail(ex.getMessage());
+        }
     }
 
-    public boolean updateDog(Dog model){
-        return dogService.updateDog(model);
+    public StatusResponse updateDog(Dog model){
+        try{
+            dogService.updateDog(model);
+            return StatusResponse.updateSuccess("Dog: " + model.getUniqueId());
+
+        }catch (Exception ex){
+            return StatusResponse.updateFail(ex.getMessage());
+        }
     }
 }

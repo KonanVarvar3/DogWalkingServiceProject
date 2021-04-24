@@ -1,6 +1,5 @@
 package com.dvoryanchikov.dogWalkingService.myPlugin.servlet;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +40,11 @@ public class ServletDogWalking extends HttpServlet {
             } else if (path.endsWith("infdogwalker.html")) {
 
                 templateRenderer.render("site/infDogWalker.html", new HashMap<>(), resp.getWriter());
+
+            }else if(path.endsWith("mainpage.html")){
+
+                templateRenderer.render("site/mainPage.html", new HashMap<>(), resp.getWriter());
+
             } else {
                 PluginAccessor accessor = ComponentManager.getInstance().getComponent(PluginAccessor.class);
                 InputStream inputStream = accessor.getDynamicResourceAsStream(path);

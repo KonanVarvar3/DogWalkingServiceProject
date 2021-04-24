@@ -28,4 +28,20 @@ public class StatusResponse {
     public static StatusResponse createFail(String message) {
         return new StatusResponse(false, message);
     }
+
+    public static StatusResponse deleteSuccess(String message){
+        return new StatusResponse(true,message);
+    }
+
+    public static StatusResponse deleteFail(String message){
+        return new StatusResponse(false,message);
+    }
+
+    public static StatusResponse updateSuccess(String message){
+        return new StatusResponse(true,message);
+    }
+
+    public static StatusResponse updateFail(String message){
+        return new StatusResponse(false,message);
+    }
 }

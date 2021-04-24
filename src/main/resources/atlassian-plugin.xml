@@ -9,17 +9,19 @@
 
     <!-- add our i18n resource -->
     <resource type="i18n" name="i18n" location="myPlugin"/>
-    
+
     <!-- add our web resources -->
     <web-resource key="myPlugin-resources" name="myPlugin Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
-        
+
         <resource type="download" name="styleClient.css" location="/site/css/styleClient.css"/>
         <resource type="download" name="styleDog.css" location="/site/css/styleDog.css"/>
         <resource type="download" name="styleDogWalker.css" location="/site/css/styleDogWalker.css"/>
+        <resource type="download" name="styleMain.css" location="/site/css/styleMain.css"/>
         <resource type="download" name="scriptInfClient.js" location="/site/js/scriptInfClient.js"/>
         <resource type="download" name="scriptInfDog.js" location="/site/js/scriptInfDog.js"/>
         <resource type="download" name="scriptInfDogWalker.js" location="/site/js/scriptInfDogWalker.js"/>
+        <resource type="download" name="dogs.jpg" location="/site/images/dogs.jpg"/>
         <resource type="download" name="images/" location="/images"/>
 
         <context>atl.general</context>

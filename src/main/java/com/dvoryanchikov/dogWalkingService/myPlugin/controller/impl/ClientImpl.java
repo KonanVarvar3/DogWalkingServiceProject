@@ -37,11 +37,24 @@ public class ClientImpl {
 
     }
 
-    public boolean deleteClient(String uniqueId) {
-        return clientService.deleteClientByUniqueId(uniqueId);
+    public StatusResponse deleteClient(String uniqueId) {
+        try{
+            clientService.deleteClientByUniqueId(uniqueId);
+            return StatusResponse.deleteSuccess("Client: " + uniqueId);
+
+        }catch (Exception ex){
+            return StatusResponse.deleteFail(ex.getMessage());
+        }
+
     }
 
-    public boolean updateClient(Client model) {
-        return clientService.updateClient(model);
+    public StatusResponse updateClient(Client model) {
+        try{
+            clientService.updateClient(model);
+            return StatusResponse.updateSuccess("Client: " + model.getUniqueId());
+
+        }catch (Exception ex){
+            return StatusResponse.updateFail(ex.getMessage());
+        }
     }
 }

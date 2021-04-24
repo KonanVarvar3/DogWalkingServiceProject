@@ -1,42 +1,153 @@
+h1 {
+    text-align: center;
+    background: antiquewhite;
+}
 
-h1{text-align: center}
+h2 {
+    text-align: center;
+}
 
-table{
+table {
     margin: auto;
     border: 1px solid black;
-    font-size: 20px}
+    font-size: 20px
+}
 
-th{
+th {
     border: 1px solid black;
     padding: 5px;
 }
 
-td{
+td {
     border: 1px solid black;
     padding: 5px;
 }
 
-#newClt{
+#createClientTable {
+    width: 40%;
+}
+
+#newClt {
     color: green;
-    margin-left: 45%;
-    display:none;
+    display: none;
+    font-size: 20px;
+    text-align: center;
+    margin-left: 70%;
+    position: fixed;
+    margin-top: 2%;
 }
 
-#findClient{
-    width: 30%;
+#findClient {
+    width: 40%;
 }
 
-#uniqueId{
+#uniqueId {
+    margin-left: 4%;
     width: 90%;
 }
 
-#findTable{
-    margin: auto;
-    width: 60%;
+#findTable {
+    width: 80%;
 }
 
-#clientTable{
-    margin: auto;
-    width: 60%;
+#clientTable {
+    width: 80%;
 }
 
+#lastName, #name, #middleName, #birthDate, #phoneNumber, #email, #address {
+    margin-left: 4%;
+    width: 90%;
+}
+
+#createButton {
+    margin-left: 4%;
+    width: 90%;
+}
+
+#menu {
+    color: chartreuse;
+    text-align: center;
+    float: left;
+    position: fixed;
+    margin-top: 2%;
+}
+
+#menuTable {
+    background: dodgerblue;
+}
+
+#menuButton1, #menuButton2, #menuButton3, #menuButton4 {
+    width: 95%;
+}
+
+#contentClientPage {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 15%;
+    border: 3px solid gray;
+}
+
+#footer {
+    background: none;
+}
+
+#Container {
+    border: 0;
+}
+
+#content {
+    border: 0;
+}
+
+#header {
+    background: none;
+    border: 0;
+}
+
+#footerClient {
+    background: aquamarine;
+    height: 5%;
+    width: 100%;
+}
+
+#inputLastName {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+#inputName {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+#inputMiddleName {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+#inputBirthday {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+#inputPhone {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+#inputEmail {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+#inputAddress {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}

@@ -2,6 +2,7 @@ package com.dvoryanchikov.dogWalkingService.myPlugin.controller.impl;
 
 import com.atlassian.activeobjects.external.ActiveObjects;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.RequestWalk;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.common.StatusResponse;
 import com.dvoryanchikov.dogWalkingService.myPlugin.services.RequestWalkService;
 
 public class RequestWalkImpl {
@@ -21,15 +22,33 @@ public class RequestWalkImpl {
         return requestWalkService.getRequestWalkByUniqueId(uniqueId);
     }
 
-    public boolean createRequestWalk(RequestWalk model){
-        return requestWalkService.createRequestWalk(model);
+    public StatusResponse createRequestWalk(RequestWalk model){
+        try{
+            requestWalkService.createRequestWalk(model);
+            return StatusResponse.createSuccess("RequestWalk: " + model.getRequestPlace() + " " + model.getPet());
+
+        }catch (Exception ex){
+            return StatusResponse.createFail(ex.getMessage());
+        }
     }
 
-    public boolean deleteRequestWalk(String uniqueId){
-        return requestWalkService.deleteRequestWalkByUniqueId(uniqueId);
+    public StatusResponse deleteRequestWalk(String uniqueId){
+        try{
+            requestWalkService.deleteRequestWalkByUniqueId(uniqueId);
+            return StatusResponse.deleteSuccess("RequestWalk: " + uniqueId);
+
+        }catch (Exception ex){
+            return StatusResponse.deleteFail(ex.getMessage());
+        }
     }
 
-    public boolean updateRequestWalk(RequestWalk model){
-        return requestWalkService.updateRequestWalk(model);
+    public StatusResponse updateRequestWalk(RequestWalk model){
+        try{
+            requestWalkService.updateRequestWalk(model);
+            return StatusResponse.updateSuccess("RequestWalk: " + model.getUniqueId());
+
+        }catch (Exception ex){
+            return StatusResponse.updateFail(ex.getMessage());
+        }
     }
 }

@@ -1,104 +1,161 @@
-
 let objectDogWalker;
 
 let newDogWalker = {
-    lastName:"",
-    name:"",
-    middleName:"",
-    birthDate:"",
-    phoneNumber:"",
-    email:""
-    // status:""
+    lastName: "",
+    name: "",
+    middleName: "",
+    birthDate: "",
+    phoneNumber: "",
+    email: ""
 }
 
 function clearDogWalker() {
 
     let parent = document.getElementById("findTableDW");
-    parent.innerText="";
+    parent.innerText = "";
 }
 
 function clearAllDogWalkers() {
 
     let parent = document.getElementById("dogWalkerTable");
-    parent.innerText="";
+    parent.innerText = "";
 }
 
-function formFindDogWalker(){
-    let xhttp1 = new XMLHttpRequest();
-
-    var str = document.getElementById("uniqueIdDW").value;
-
-    xhttp1.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            myFunctionDW(this.responseText);
-        }
-    }
-
-    xhttp1.open("GET",
-        "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/dogWalker?uniqueId=" + str);
-    xhttp1.send();
-
-    function myFunctionDW(data) {
-        let array = JSON.parse(data, function(key, value) {
-            if (key === 'birthDate') return new Date(value);
-            return value;
-        });
-
-        //let array = JSON.parse(data);
-
-        let parent = document.getElementById("findTableDW");
-        parent.innerHTML = "";
-
-        let table = document.createElement("table");
-
-        createTitleTableDW(table);
-
-        addDataFindDW(array,table);
-
-        parent.append(table);
-    }
-}
-
-function crtDW() {
-
-    let out = document.getElementById("outDW");
-    out.innerHTML="";
-
-    newDogWalker.lastName = document.getElementById("lastNameDW").value;
-    newDogWalker.name = document.getElementById("nameDW").value;
-    newDogWalker.middleName = document.getElementById("middleNameDW").value;
-    newDogWalker.birthDate = document.getElementById("birthDateDW").value;
-    newDogWalker.phoneNumber = document.getElementById("phoneNumberDW").value;
-    newDogWalker.email = document.getElementById("emailDW").value;
-    // newClient.status = document.getElementById("statusDW").value;
-
-    objectDogWalker = JSON.stringify(newDogWalker);
+function formFindDogWalker() {
+    let str = document.getElementById("uniqueIdDW").value;
 
     AJS.$.ajax({
-        type: 'post',
-        url: 'http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/createDogWalker',
+        type: 'get',
+        url: "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/dogWalker?uniqueId=" + str,
         dataType: "json",
         contentType: "application/json; charset=utf-8",
-        data: objectDogWalker,
-        success: function () {
+        data: 'json',
 
-            document.getElementById("lastNameDW").value = "";
-            document.getElementById("nameDW").value = "";
-            document.getElementById("middleNameDW").value = "";
-            document.getElementById("birthDateDW").value = "";
-            document.getElementById("phoneNumberDW").value = "";
-            document.getElementById("emailDW").value = "";
-            // document.getElementById("statusDW").value = "";
+        success: function (data) {
+            let parent = document.getElementById("findTableDW");
+            parent.innerHTML = "";
 
-            document.getElementById("newDgWlkr").style.display = "block";
+            let table = document.createElement("table");
 
-            setTimeout(function () {
-                document.getElementById("newDgWlkr").style.display = "none";
-            }, 3000);
+            createTitleTableDW(table);
 
-            addFromBdDW();
+            addDataFindDW(data, table);
+
+            parent.append(table);
         }
     });
+}
+
+function checkValid() {
+    let valid = document.getElementsByClassName("inputDogWalker");
+    let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+    let check = true;
+
+    for (let i = 0; i < valid.length; i++) {
+        if (valid[i].value === "") {
+            switch (i) {
+                case 0:
+                    document.getElementById("inputLastNameDW").innerHTML = "Fill Last name!";
+                    break;
+                case 1:
+                    document.getElementById("inputNameDW").innerHTML = "Fill Name!";
+                    break;
+                case 2:
+                    document.getElementById("inputMiddleNameDW").innerHTML = "Fill Middle name!";
+                    break;
+                case 3:
+                    document.getElementById("inputBirthdayDW").innerHTML = "Fill Birthday!";
+                    break;
+                case 4:
+                    document.getElementById("inputPhoneDW").innerHTML = "Fill Phone!";
+                    break;
+                case 5:
+                    document.getElementById("inputEmailDW").innerHTML = "Fill Email!";
+                    break;
+            }
+            check = false;
+
+        } else if (reg.test(valid[5].value) === false) {
+            document.getElementById("inputEmailDW").innerHTML = "Incorrect Email!";
+            check = false;
+        }
+    }
+    return check;
+}
+
+function inputValueLastNameDW() {
+    document.getElementById("inputLastNameDW").innerHTML = "";
+}
+
+function inputValueNameDW() {
+    document.getElementById("inputNameDW").innerHTML = "";
+}
+
+function inputValueMiddleNameDW() {
+    document.getElementById("inputMiddleNameDW").innerHTML = "";
+}
+
+function inputValueBirthdayDW() {
+    document.getElementById("inputBirthdayDW").innerHTML = "";
+}
+
+function inputValuePhoneDW() {
+    document.getElementById("inputPhoneDW").innerHTML = "";
+}
+
+function inputValueEmailDW() {
+    document.getElementById("inputEmailDW").innerHTML = "";
+}
+
+$(function () {
+    $('#date').daterangepicker({
+        singleDatePicker: true,
+        locale: {
+            format: 'DD.MM.YYYY'
+        }
+    });
+});
+
+function crtDW() {
+    if (checkValid() === true) {
+        let out = document.getElementById("outDW");
+        out.innerHTML = "";
+
+        newDogWalker.lastName = document.getElementById("lastNameDW").value;
+        newDogWalker.name = document.getElementById("nameDW").value;
+        newDogWalker.middleName = document.getElementById("middleNameDW").value;
+        newDogWalker.birthDate = document.getElementById("birthDateDW").value;
+        newDogWalker.phoneNumber = document.getElementById("phoneNumberDW").value;
+        newDogWalker.email = document.getElementById("emailDW").value;
+
+        objectDogWalker = JSON.stringify(newDogWalker);
+
+        AJS.$.ajax({
+            type: 'post',
+            url: 'http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/createDogWalker',
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: objectDogWalker,
+            success: function () {
+
+                document.getElementById("lastNameDW").value = "";
+                document.getElementById("nameDW").value = "";
+                document.getElementById("middleNameDW").value = "";
+                document.getElementById("birthDateDW").value = "";
+                document.getElementById("phoneNumberDW").value = "";
+                document.getElementById("emailDW").value = "";
+
+                document.getElementById("newDgWlkr").style.display = "block";
+
+                setTimeout(function () {
+                    document.getElementById("newDgWlkr").style.display = "none";
+                }, 3000);
+
+                addFromBdDW();
+            }
+        });
+    }
 }
 
 function createTitleTableDW(table) {
@@ -139,118 +196,107 @@ function createTitleTableDW(table) {
     row.append(col8);
 }
 
-function addDataFindDW(array,table) {
-
+function addDataFindDW(array, table) {
     let addRow = document.createElement('tr');
     table.append(addRow);
 
     for (let j = 0; j < 8; j++) {
-
         let addCol = document.createElement('td');
 
         let key = array.uniqueId;
 
         switch (j) {
-            case 1: key = array.lastName;
+            case 1:
+                key = array.lastName;
                 break;
-
-            case 2: key = array.name;
+            case 2:
+                key = array.name;
                 break;
-
-            case 3: key = array.middleName;
+            case 3:
+                key = array.middleName;
                 break;
-
-            case 4: key = array.birthDate;
+            case 4:
+                key = toDate(array.birthDate);
                 break;
-
-            case 5: key = array.phoneNumber;
+            case 5:
+                key = array.phoneNumber;
                 break;
-
-            case 6: key = array.email;
+            case 6:
+                key = array.email;
                 break;
-
-            case 7: key = array.status;
+            case 7:
+                key = array.status;
                 break;
         }
-
         addCol.innerHTML = key;
         addRow.append(addCol);
     }
 }
 
-function addDataTableDW(array,table) {
+function toDate(value) {
+    let date = new Date(value);
+    return date.toLocaleDateString();
+}
+
+function addDataTableDW(array, table) {
     for (let i = 0; i < array.length; i++) {
 
         let addRow = document.createElement('tr');
         table.append(addRow);
 
         for (let j = 0; j < 8; j++) {
-
             let addCol = document.createElement('td');
 
             let key = array[i].uniqueId;
 
             switch (j) {
-                case 1: key = array[i].lastName;
+                case 1:
+                    key = array[i].lastName;
                     break;
-
-                case 2: key = array[i].name;
+                case 2:
+                    key = array[i].name;
                     break;
-
-                case 3: key = array[i].middleName;
+                case 3:
+                    key = array[i].middleName;
                     break;
-
-                case 4: key = array[i].birthDate;
+                case 4:
+                    key = toDate(array[i].birthDate);
                     break;
-
-                case 5: key = array[i].phoneNumber;
+                case 5:
+                    key = array[i].phoneNumber;
                     break;
-
-                case 6: key = array[i].email;
+                case 6:
+                    key = array[i].email;
                     break;
-
-                case 7: key = array[i].status;
+                case 7:
+                    key = array[i].status;
                     break;
             }
-
             addCol.innerHTML = key;
             addRow.append(addCol);
         }
     }
 }
 
-function addFromBdDW(){
+function addFromBdDW() {
+    AJS.$.ajax({
+        type: 'get',
+        url: "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/allDogWalkers",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: 'json',
 
-    let xhttp2 = new XMLHttpRequest();
+        success: function (data) {
+            let parent = document.getElementById("dogWalkerTable");
+            parent.innerHTML = "";
 
-    xhttp2.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            myFunctionDW(this.responseText);
+            let table = document.createElement("table");
+
+            createTitleTableDW(table);
+
+            addDataTableDW(data, table);
+
+            parent.append(table);
         }
-    }
-
-    xhttp2.open("GET",
-        "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/allDogWalkers");
-    xhttp2.send();
-
-    function myFunctionDW(data) {
-
-        let array = JSON.parse(data, function(key, value) {
-            if (key === 'birthDate') return new Date(value);
-            return value;
-        });
-
-        //let array = JSON.parse(data);
-
-        let parent = document.getElementById("dogWalkerTable");
-        parent.innerHTML = "";
-
-        let table = document.createElement("table");
-
-        createTitleTableDW(table);
-
-        addDataTableDW(array,table);
-
-        parent.append(table);
-    }
+    });
 }
