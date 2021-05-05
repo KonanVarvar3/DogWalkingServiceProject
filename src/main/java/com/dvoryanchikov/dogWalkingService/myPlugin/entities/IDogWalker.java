@@ -7,36 +7,36 @@ import java.util.Date;
 
 public interface IDogWalker extends Entity {
 
-    public String getLastName();
+    String getLastName();
 
-    public void setLastName(String lastName);
+    void setLastName(String lastName);
 
-    public String getName();
+    String getName();
 
-    public void setName(String name);
+    void setName(String name);
 
-    public String getMiddleName();
+    String getMiddleName();
 
-    public void setMiddleName(String middleName);
+    void setMiddleName(String middleName);
 
-    public Date getBirthDate();
+    Date getBirthDate();
 
-    public void setBirthDate(Date birthDate);
+    void setBirthDate(Date birthDate);
 
-    public String getPhoneNumber();
+    String getPhoneNumber();
 
-    public void setPhoneNumber(String phoneNumber);
+    void setPhoneNumber(String phoneNumber);
 
-    public String getEmail();
+    String getEmail();
 
-    public void setEmail(String email);
+    void setEmail(String email);
 
-    public DogWalkerStatus getDogWalkerStatus();
+    DogWalkerStatus getDogWalkerStatus();
 
-    public void setDogWalkerStatus(DogWalkerStatus dogWalkerStatus);
+    void setDogWalkerStatus(DogWalkerStatus dogWalkerStatus);
 
-    public String getUniqueId();
+    String getUniqueId();
 
-    public void setUniqueId(String uniqueId);
+    void setUniqueId(String uniqueId);
 
 }

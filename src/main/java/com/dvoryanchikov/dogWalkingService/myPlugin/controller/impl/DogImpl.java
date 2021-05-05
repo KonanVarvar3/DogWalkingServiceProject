@@ -22,6 +22,10 @@ public class DogImpl {
         return dogService.getDogByUniqueId(uniqueId);
     }
 
+    public Dog[] getDogByOwnerId(String ownerId){
+        return dogService.getDogByOwnerId(ownerId);
+    }
+
     public Dog[] getAllDogs(){
         return dogService.getAllDogs();
     }

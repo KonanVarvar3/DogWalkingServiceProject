@@ -6,35 +6,39 @@ import net.java.ao.Entity;
 import java.util.Date;
 
 public interface IRequestWalk extends Entity {
-    public String getRequestPlace();
+    String getRequestPlace();
 
-    public void setRequestPlace(String requestPlace);
+    void setRequestPlace(String requestPlace);
 
-    public Date getTimeWalk();
+    String getTimeWalk();
 
-    public void setTimeWalk(Date timeWalk);
+    void setTimeWalk(String timeWalk);
 
-    public String getPet();
+    String getPetId();
 
-    public void setPet(String pet);
+    void setPetId(String petId);
 
-    public int getWalkDuration();
+    int getWalkDuration();
 
-    public void setWalkDuration(int walkDuration);
+    void setWalkDuration(int walkDuration);
 
-    public RequestWalkStatus getRequestWalkStatus();
+    RequestWalkStatus getRequestWalkStatus();
 
-    public void setRequestWalkStatus(RequestWalkStatus requestWalkStatus);
+    void setRequestWalkStatus(RequestWalkStatus requestWalkStatus);
 
-    public void setRequestWalkStatus();
+    void setRequestWalkStatus();
 
-    public String getUniqueId();
+    String getUniqueId();
 
-    public void setUniqueId(String uniqueId);
+    void setUniqueId(String uniqueId);
 
-    public void setUniqueId();
+    void setUniqueId();
 
-    public String getClientId();
+    String getClientId();
 
-    public void setClientId(String clientId);
+    void setClientId(String clientId);
+
+    String getDogWalkerId();
+
+    void setDogWalkerId(String dogWalkerId);
 }

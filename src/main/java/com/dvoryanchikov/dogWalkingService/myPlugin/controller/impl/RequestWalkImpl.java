@@ -18,6 +18,10 @@ public class RequestWalkImpl {
         return new RequestWalkImpl(ao);
     }
 
+    public RequestWalk[] getAllRequestWalks(){
+        return requestWalkService.getAllRequestWalks();
+    }
+
     public RequestWalk getRequestWalkByUniqueId(String uniqueId){
         return requestWalkService.getRequestWalkByUniqueId(uniqueId);
     }
@@ -25,7 +29,7 @@ public class RequestWalkImpl {
     public StatusResponse createRequestWalk(RequestWalk model){
         try{
             requestWalkService.createRequestWalk(model);
-            return StatusResponse.createSuccess("RequestWalk: " + model.getRequestPlace() + " " + model.getPet());
+            return StatusResponse.createSuccess("RequestWalk: " + model.getRequestPlace() + " " + model.getPetId());
 
         }catch (Exception ex){
             return StatusResponse.createFail(ex.getMessage());

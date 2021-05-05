@@ -47,7 +47,6 @@ function formFindClient() {
 
 function checkValid() {
     let valid = document.getElementsByClassName("inputClient");
-    let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
     let check = true;
 
@@ -76,10 +75,6 @@ function checkValid() {
                     document.getElementById("inputAddress").innerHTML = "Fill Address!";
                     break;
             }
-            check = false;
-
-        } else if (reg.test(valid[5].value) === false) {
-            document.getElementById("inputEmail").innerHTML = "Incorrect Email!";
             check = false;
         }
     }
@@ -114,15 +109,6 @@ function inputValueAddress() {
     document.getElementById("inputAddress").innerHTML = "";
 }
 
-$(function () {
-    $('#date').daterangepicker({
-        singleDatePicker: true,
-        locale: {
-            format: 'DD.MM.YYYY'
-        }
-    });
-});
-
 function crt() {
     if (checkValid() === true) {
         let out = document.getElementById("out");
@@ -133,7 +119,8 @@ function crt() {
         newClient.middleName = document.getElementById("middleName").value;
         newClient.birthDate = document.getElementById("birthDate").value;
         newClient.phoneNumber = document.getElementById("phoneNumber").value;
-        newClient.email = document.getElementById("email").value;
+        newClient.email = document.getElementById("email").value +
+            document.getElementById("selectDomains").value;
         newClient.address = document.getElementById("address").value;
 
         objectClient = JSON.stringify(newClient);

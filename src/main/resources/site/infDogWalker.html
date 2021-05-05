@@ -8,7 +8,6 @@
     </title>
 
     <script type="text/javascript" src="/plugins/servlet/servlet-inf/site/js/scriptInfDogWalker.js"></script>
-
     <link href="/plugins/servlet/servlet-inf/site/css/styleDogWalker.css" rel="stylesheet"/>
 
 </head>
@@ -44,7 +43,7 @@
         </tr>
         <tr>
             <td>
-                <a href="/plugins/servlet/servlet-inf/site/mainPage.html">
+                <a href="/plugins/servlet/servlet-inf/site/infRequestWalk.html">
                     <input type="button" id="menuButton4" value="Go to request">
                 </a>
             </td>
@@ -123,8 +122,8 @@
                 Birth date:
             </td>
             <td>
-                <input type="date" onclick="inputValueBirthdayDW()"
-                       class="form-control, inputDogWalker" id="birthDateDW" name="date" required>
+                <input type="date" onclick="inputValueBirthdayDW()" placeholder="dd.mm.yyyy"
+                       class="inputDogWalker" id="birthDateDW" name="date" required>
                 <div id="inputBirthdayDW"></div>
             </td>
         </tr>
@@ -145,6 +144,17 @@
             <td>
                 <input type="text" onclick="inputValueEmailDW()" class="inputDogWalker"
                        id="emailDW" placeholder="something@mail.ru">
+                <select id="selectDomainsDW">
+                    <option value="@mail.ru">
+                        @mail.ru
+                    </option>
+                    <option value="@yandex.ru">
+                        @yandex.ru
+                    </option>
+                    <option value="@gmail.com">
+                        @gmail.com
+                    </option>
+                </select>
                 <div id="inputEmailDW"></div>
             </td>
         </tr>
@@ -158,10 +168,10 @@
 
     <div id="footerDogWalker">&copy; Dvoryanchikov Sergey</div>
 </div>
-<div id="Container">
-    <div id="header"></div>
-    <div id="footer"></div>
-    <div id="content"></div>
-</div>
+<!--<div id="Container">-->
+<!--    <div id="header"></div>-->
+<!--    <div id="footer"></div>-->
+<!--    <div id="content"></div>-->
+<!--</div>-->
 </body>
 </html>

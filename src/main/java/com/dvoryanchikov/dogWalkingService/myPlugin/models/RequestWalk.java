@@ -10,26 +10,38 @@ public class RequestWalk extends UniqID{
     @JsonProperty("requestPlace")
     private String requestPlace;
     @JsonProperty("timeWalk")
-    private Date timeWalk;
-    @JsonProperty("pet")
-    private String pet;
+    private String timeWalk;
+    @JsonProperty("petId")
+    private String petId;
     @JsonProperty("walkDuration")
     private int walkDuration;
     @JsonProperty("requestWalkStatus")
     private RequestWalkStatus requestWalkStatus;
-    @JsonProperty("ClientId")
-    private String ClientId;
+    @JsonProperty("clientId")
+    private String clientId;
+    @JsonProperty("dogWalkerId")
+    private String dogWalkerId;
 
+    //Constructor
     public RequestWalk(){
         requestWalkStatus = RequestWalkStatus.SEARCHING_WALKER;
+        dogWalkerId = "No dog walker";
+    }
+
+    public String getDogWalkerId() {
+        return dogWalkerId;
+    }
+
+    public void setDogWalkerId(String dogWalkerId) {
+        this.dogWalkerId = dogWalkerId;
     }
 
     public String getClientId() {
-        return ClientId;
+        return clientId;
     }
 
     public void setClientId(String clientId) {
-        ClientId = clientId;
+        this.clientId = clientId;
     }
 
     public String getRequestPlace() {
@@ -40,20 +52,20 @@ public class RequestWalk extends UniqID{
         this.requestPlace = requestPlace;
     }
 
-    public Date getTimeWalk() {
+    public String getTimeWalk() {
         return timeWalk;
     }
 
-    public void setTimeWalk(Date timeWalk) {
+    public void setTimeWalk(String timeWalk) {
         this.timeWalk = timeWalk;
     }
 
-    public String getPet() {
-        return pet;
+    public String getPetId() {
+        return petId;
     }
 
-    public void setPet(String pet) {
-        this.pet = pet;
+    public void setPetId(String petId) {
+        this.petId = petId;
     }
 
     public int getWalkDuration() {
@@ -75,22 +87,24 @@ public class RequestWalk extends UniqID{
     public void toEntity(IRequestWalk entity){
         entity.setRequestPlace(this.getRequestPlace());
         entity.setTimeWalk(this.getTimeWalk());
-        entity.setPet(this.getPet());
+        entity.setPetId(this.getPetId());
         entity.setWalkDuration(this.getWalkDuration());
         entity.setRequestWalkStatus(this.getRequestWalkStatus());
         entity.setUniqueId(this.getUniqueId());
         entity.setClientId(this.getClientId());
+        entity.setDogWalkerId(this.getDogWalkerId());
     }
 
     public static RequestWalk fromEntity(IRequestWalk entity){
         RequestWalk requestWalk = new RequestWalk();
         requestWalk.setRequestPlace(entity.getRequestPlace());
         requestWalk.setTimeWalk(entity.getTimeWalk());
-        requestWalk.setPet(entity.getPet());
+        requestWalk.setPetId(entity.getPetId());
         requestWalk.setWalkDuration(entity.getWalkDuration());
         requestWalk.setRequestWalkStatus(entity.getRequestWalkStatus());
         requestWalk.setUniqueId(entity.getUniqueId());
         requestWalk.setClientId(entity.getClientId());
+        requestWalk.setDogWalkerId(entity.getDogWalkerId());
         return requestWalk;
     }
 }

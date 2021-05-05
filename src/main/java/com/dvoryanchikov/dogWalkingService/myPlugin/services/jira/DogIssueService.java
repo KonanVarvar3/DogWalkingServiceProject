@@ -1,15 +1,30 @@
 package com.dvoryanchikov.dogWalkingService.myPlugin.services.jira;
 
+import com.atlassian.activeobjects.external.ActiveObjects;
 import com.atlassian.jira.bc.issue.IssueService;
 import com.atlassian.jira.component.ComponentAccessor;
 import com.atlassian.jira.issue.IssueInputParameters;
+import com.dvoryanchikov.dogWalkingService.myPlugin.managers.ClientManager;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.Client;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.Dog;
 
 public class DogIssueService {
 
+    private ActiveObjects ao;
+    private ClientManager clientManager;
+
+    public DogIssueService(ActiveObjects ao){
+        this.ao = ao;
+        clientManager = new ClientManager(ao);
+    }
+
+    private String findFullName(String id){
+        Client client = clientManager.getByUniqueId(id);
+        return client.getLastName() + " " + client.getLastName();
+    }
+
     public boolean create(Dog dog) {
         try {
-
             IssueService issueService = ComponentAccessor.getIssueService();
             IssueInputParameters issueInputParameters = issueService.newIssueInputParameters();
 
@@ -24,14 +39,13 @@ public class DogIssueService {
             issueInputParameters.addCustomFieldValue("customfield_10212", dog.getColor());
             issueInputParameters.addCustomFieldValue("customfield_10213", dog.getDogCharacter());
             issueInputParameters.addCustomFieldValue("customfield_10215", dog.getDogStatus().toString());
-            //issueInputParameters.addCustomFieldValue("",dog.getOwnerId());
+            issueInputParameters.addCustomFieldValue("customfield_10300", findFullName(dog.getOwnerId()));
 
             IssueService.CreateValidationResult createValidationResult = issueService
                     .validateCreate(ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser(),
                             issueInputParameters);
 
             if(createValidationResult.isValid()){
-
                 issueService.create(ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser(),
                         createValidationResult);
 

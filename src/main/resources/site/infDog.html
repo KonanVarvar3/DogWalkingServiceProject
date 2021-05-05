@@ -7,7 +7,6 @@
     </title>
 
     <script src="/plugins/servlet/servlet-inf/site/js/scriptInfDog.js" type="text/javascript"></script>
-
     <link href="/plugins/servlet/servlet-inf/site/css/styleDog.css" rel="stylesheet"/>
 
 </head>
@@ -42,8 +41,8 @@
         </tr>
         <tr>
             <td>
-                <a href="/plugins/servlet/servlet-inf/site/mainPage.html">
-                    <input type="button" id="menuButton4" value="Go to request">
+                <a href="/plugins/servlet/servlet-inf/site/infRequestWalk.html">
+                    <input type="button" id="menuButton4" value="Go to requests">
                 </a>
             </td>
         </tr>
@@ -78,6 +77,7 @@
         </table>
     </form>
 
+    <br>
     <div id="findTableD"></div>
 
     <br>
@@ -111,7 +111,8 @@
             </td>
             <td>
                 <input type="date" onclick="inputValueDogBirthday()" name="date"
-                       class="form-control, inputDog" id="dogBirthDate" required>
+                       class="inputDog, form-control" id="dogBirthDate" placeholder="dd.mm.yyyy" required>
+
                 <div id="inputDogBirthday"></div>
             </td>
         </tr>
@@ -168,11 +169,11 @@
     <div id="footerDog">&copy; Dvoryanchikov Sergey</div>
 </div>
 
-<div id="Container">
-    <div id="header"></div>
-    <div id="footer"></div>
-    <div id="content"></div>
-</div>
+<!--<div id="Container">-->
+<!--    <div id="header"></div>-->
+<!--    <div id="footer"></div>-->
+<!--    <div id="content"></div>-->
+<!--</div>-->
 
 </body>
 </html>

@@ -1,28 +1,36 @@
-h1{
+h1 {
     text-align: center;
     background: antiquewhite;
 }
 
-table{
-    margin: auto;
+table {
     border: 1px solid black;
-    font-size: 20px}
+    font-size: 20px
+}
 
-th{
+th {
     border: 1px solid black;
     padding: 5px;
 }
 
-td{
+td {
     border: 1px solid black;
     padding: 5px;
 }
 
-h2{
+h2 {
     text-align: center;
 }
 
-#newDg{
+#findTableD{
+    width: 100%;
+}
+
+#dogTable{
+    width: 100%;
+}
+
+#newDg {
     color: green;
     display: none;
     font-size: 20px;
@@ -32,78 +40,71 @@ h2{
     margin-top: 2%;
 }
 
-#findDog{
+#findDog {
+    margin: auto;
     width: 40%;
 }
 
-#createPetTable{
+#createPetTable {
+    margin: auto;
     width: 40%;
 }
 
-#uniqueIdD{
+#uniqueIdD {
     margin-left: 4%;
     width: 90%;
 }
 
-#findTableD{
-    width: 80%;
-}
-
-#dogTable{
-    width: 80%;
-}
-
-#dogName,#gender,#dogBirthDate,#breed,#color,#dogCharacter{
+#dogName, #gender, #dogBirthDate, #breed, #color, #dogCharacter, #selectOwner {
     margin-left: 4%;
     width: 90%;
 }
 
-#createButton{
+#createButton {
     margin-left: 4%;
     width: 90%;
 }
 
-#menu{
+#menu {
     color: chartreuse;
     text-align: center;
     float: left;
     position: fixed;
+    margin-right: 3%;
     margin-top: 2%;
 }
 
-#menuTable{
+#menuTable {
     background: dodgerblue;
 }
 
-#menuButton1,#menuButton2,#menuButton3,#menuButton4{
+#menuButton1, #menuButton2, #menuButton3, #menuButton4 {
     width: 95%;
 }
 
-#contentDogPage{
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 15%;
+#contentDogPage {
+    margin: 0 15%;
     border: 3px solid gray;
 }
 
-#footer{
-    background: none;
-}
+/*#footer {*/
+/*    background: none;*/
+/*}*/
 
-#Container{
-    border : 0;
-}
+/*#Container {*/
+/*    border: 0;*/
+/*}*/
 
-#content{
-    border: 0;
-}
+/*#content {*/
+/*    border: 0;*/
+/*}*/
 
-#header{
-    background: none;
-    border: 0;
-}
+/*#header {*/
+/*    background: none;*/
+/*    border: 0;*/
+/*}*/
 
-#footerDog{
+#footerDog {
     background: aquamarine;
     height: 5%;
     width: 100%;

@@ -8,11 +8,12 @@ import com.dvoryanchikov.dogWalkingService.myPlugin.services.jira.DogIssueServic
 public class DogService {
     private ActiveObjects ao;
     private DogManager dogManager;
-    private DogIssueService dogIssueService = new DogIssueService();
+    private DogIssueService dogIssueService;
 
     private DogService(ActiveObjects ao) {
         this.ao = ao;
         this.dogManager = new DogManager(ao);
+        this.dogIssueService = new DogIssueService(ao);
     }
 
     public static DogService create(ActiveObjects ao) {
@@ -21,6 +22,10 @@ public class DogService {
 
     public Dog getDogByUniqueId(String uniqueId) {
         return dogManager.getByUniqueId(uniqueId);
+    }
+
+    public Dog[] getDogByOwnerId(String ownerId){
+        return dogManager.getByOwnerId(ownerId);
     }
 
     public Dog[] getAllDogs() {

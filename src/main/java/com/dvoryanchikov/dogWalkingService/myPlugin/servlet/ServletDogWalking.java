@@ -41,9 +41,13 @@ public class ServletDogWalking extends HttpServlet {
 
                 templateRenderer.render("site/infDogWalker.html", new HashMap<>(), resp.getWriter());
 
-            }else if(path.endsWith("mainpage.html")){
+            } else if (path.endsWith("mainpage.html")) {
 
                 templateRenderer.render("site/mainPage.html", new HashMap<>(), resp.getWriter());
+
+            } else if (path.endsWith("infrequestwalk.html")) {
+
+                templateRenderer.render("site/infRequestWalk.html", new HashMap<>(), resp.getWriter());
 
             } else {
                 PluginAccessor accessor = ComponentManager.getInstance().getComponent(PluginAccessor.class);

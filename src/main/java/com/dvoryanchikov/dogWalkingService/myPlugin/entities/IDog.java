@@ -7,39 +7,39 @@ import java.util.Date;
 
 public interface IDog extends Entity {
 
-    public String getDogName();
+    String getDogName();
 
-    public void setDogName(String dogName);
+    void setDogName(String dogName);
 
-    public String getGender();
+    String getGender();
 
-    public void setGender(String gender);
+    void setGender(String gender);
 
-    public Date getDogBirthDate();
+    Date getDogBirthDate();
 
-    public void setDogBirthDate(Date dogBirthDate);
+    void setDogBirthDate(Date dogBirthDate);
 
-    public String getBreed();
+    String getBreed();
 
-    public void setBreed(String breed);
+    void setBreed(String breed);
 
-    public String getColor();
+    String getColor();
 
-    public void setColor(String color);
+    void setColor(String color);
 
-    public String getDogCharacter();
+    String getDogCharacter();
 
-    public void setDogCharacter(String dogCharacter);
+    void setDogCharacter(String dogCharacter);
 
-    public DogStatus getDogStatus();
+    DogStatus getDogStatus();
 
-    public void setDogStatus(DogStatus dogStatus);
+    void setDogStatus(DogStatus dogStatus);
 
-    public String getUniqueId();
+    String getUniqueId();
 
-    public void setUniqueId(String uniqueId);
+    void setUniqueId(String uniqueId);
 
-    public String getOwnerId();
+    String getOwnerId();
 
-    public void setOwnerId(String ownerId);
+    void setOwnerId(String ownerId);
 }

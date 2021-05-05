@@ -59,7 +59,6 @@ public class DogWalkerManager {
             IDogWalker[] entities = ao.find(IDogWalker.class,query);
 
             if(entities != null && entities.length>0){
-
                 DogWalker[] dogWalkers = new DogWalker[entities.length];
 
                 for (int i = 0; i < entities.length; i++) {
@@ -91,8 +90,13 @@ public class DogWalkerManager {
         try {
             if (model != null) {
                 IDogWalker entity = getEntityByUniqueId(model.getUniqueId());
+
                 if (entity != null) {
-                    model.toEntity(entity);
+                    DogWalker dogWalker = DogWalker.fromEntity(entity);
+
+                    dogWalker.setDogWalkerStatus(model.getDogWalkerStatus());
+
+                    dogWalker.toEntity(entity);
                     entity.save();
                     return true;
                 }

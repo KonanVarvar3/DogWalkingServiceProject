@@ -1,28 +1,36 @@
-h1{
+h1 {
     text-align: center;
     background: antiquewhite;
 }
 
-h2{
+h2 {
     text-align: center;
 }
 
-table{
-    margin: auto;
+table {
     border: 1px solid black;
-    font-size: 20px}
+    font-size: 20px
+}
 
-th{
+th {
     border: 1px solid black;
     padding: 5px;
 }
 
-td{
+td {
     border: 1px solid black;
     padding: 5px;
 }
 
-#newDgWlkr{
+#findTableDW {
+    width: 100%;
+}
+
+#dogWalkerTable {
+    width: 100%;
+}
+
+#newDgWlkr {
     color: green;
     display: none;
     font-size: 20px;
@@ -32,78 +40,80 @@ td{
     margin-top: 2%;
 }
 
-#findDogWalker{
-    width: 40%;
+#findDogWalker {
+    margin: auto;
+    width: 45%;
 }
 
-#createDogwalker{
-    width: 40%;
+#createDogwalker {
+    margin: auto;
+    width: 45%;
 }
 
-#uniqueIdDW{
+#uniqueIdDW {
     margin-left: 4%;
     width: 90%;
 }
 
-#findTableDW{
-    width: 80%;
-}
-
-#dogWalkerTable{
-    width: 80%;
-}
-
-#lastNameDW,#nameDW,#middleNameDW,#birthDateDW,#phoneNumberDW,#emailDW{
+#lastNameDW, #nameDW, #middleNameDW, #birthDateDW, #phoneNumberDW {
     margin-left: 4%;
     width: 90%;
 }
 
-#createButton{
+#emailDW {
+    margin-left: 4%;
+    width: 60%;
+}
+
+#selectDomainsDW {
+    width: 30%;
+}
+
+#createButton {
     margin-left: 4%;
     width: 90%;
 }
 
-#menu{
+#menu {
     color: chartreuse;
     text-align: center;
     float: left;
     position: fixed;
+    margin-right: 3%;
     margin-top: 2%;
 }
 
-#menuTable{
+#menuTable {
     background: dodgerblue;
 }
 
-#menuButton1,#menuButton2,#menuButton3,#menuButton4{
+#menuButton1, #menuButton2, #menuButton3, #menuButton4 {
     width: 95%;
 }
 
-#contentDogWalkerPage{
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 15%;
+#contentDogWalkerPage {
+    margin: 0 15%;
     border: 3px solid gray;
 }
 
-#footer{
-    background: none;
-}
+/*#footer {*/
+/*    background: none;*/
+/*}*/
 
-#Container{
-    border : 0;
-}
+/*#Container {*/
+/*    border: 0;*/
+/*}*/
 
-#content{
-    border: 0;
-}
+/*#content {*/
+/*    border: 0;*/
+/*}*/
 
-#header{
-    background: none;
-    border: 0;
-}
+/*#header {*/
+/*    background: none;*/
+/*    border: 0;*/
+/*}*/
 
-#footerDogWalker{
+#footerDogWalker {
     background: aquamarine;
     height: 5%;
     width: 100%;

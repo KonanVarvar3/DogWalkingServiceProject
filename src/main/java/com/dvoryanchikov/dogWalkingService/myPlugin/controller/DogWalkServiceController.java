@@ -90,8 +90,14 @@ public class DogWalkServiceController {
     }
 
     @GET
+    @Path("/ownerDogs")
+    public Response getDogByOwnerId(@QueryParam("ownerId") String ownerId){
+        return Response.ok(getDogImpl().getDogByOwnerId(ownerId)).build();
+    }
+
+    @GET
     @Path("/allDogs")
-    public Response getAllDogs(){
+    public Response getAllDogs() {
         return Response.ok(getDogImpl().getAllDogs()).build();
     }
 
@@ -132,7 +138,7 @@ public class DogWalkServiceController {
 
     @GET
     @Path("/allDogWalkers")
-    public Response getAllDogWalkers(){
+    public Response getAllDogWalkers() {
         return Response.ok(getDogWalkerImpl().getAllDogWalkers()).build();
     }
 
@@ -163,6 +169,12 @@ public class DogWalkServiceController {
     @Path("/createRequestWalk")
     public Response createRequestWalk(RequestWalk requestWalk) {
         return Response.ok(getRequestWalkImpl().createRequestWalk(requestWalk)).build();
+    }
+
+    @GET
+    @Path("/allRequestWalks")
+    public Response getAllRequestWalks() {
+        return Response.ok(getRequestWalkImpl().getAllRequestWalks()).build();
     }
 
     @GET

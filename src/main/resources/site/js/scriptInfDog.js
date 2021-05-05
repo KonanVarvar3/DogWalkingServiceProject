@@ -142,15 +142,6 @@ function inputValueCharacter() {
     document.getElementById("inputCharacter").innerHTML = "";
 }
 
-$(function () {
-    $('#date').daterangepicker({
-        singleDatePicker: true,
-        locale: {
-            format: 'DD.MM.YYYY'
-        }
-    });
-});
-
 function crtD() {
     if (checkValid() === true) {
         let out = document.getElementById("outD");
@@ -331,14 +322,16 @@ function loadOwners() {
         data: 'json',
 
         success: function (data) {
-            let parent = document.getElementById("selectOwner");
-            parent.innerHTML = "";
+            if(data !== ""){
+                let parent = document.getElementById("selectOwner");
+                parent.innerHTML = "";
 
-            for (let i = 0; i < data.length; i++) {
-                let owner = document.createElement("option");
-                owner.innerHTML = data[i].name + " " + data[i].lastName;
-                owner.value = data[i].uniqueId;
-                parent.append(owner);
+                for (let i = 0; i < data.length; i++) {
+                    let owner = document.createElement("option");
+                    owner.innerHTML = data[i].name + " " + data[i].lastName;
+                    owner.value = data[i].uniqueId;
+                    parent.append(owner);
+                }
             }
         }
     });

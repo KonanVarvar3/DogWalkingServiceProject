@@ -12,7 +12,7 @@ public class RequestWalkManager {
         this.ao = ao;
     }
 
-    public boolean createRequestWalk(RequestWalk model) {
+    public boolean save(RequestWalk model) {
         try {
             IRequestWalk entity = ao.create(IRequestWalk.class);
             model.toEntity(entity);
@@ -24,7 +24,7 @@ public class RequestWalkManager {
         return false;
     }
 
-    public boolean deleteRequestWalkByUniqueId(String uniqueId) {
+    public boolean deleteByUniqueId(String uniqueId) {
         try {
             Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
             IRequestWalk[] entities = ao.find(IRequestWalk.class, query);
@@ -38,7 +38,26 @@ public class RequestWalkManager {
         return false;
     }
 
-    public RequestWalk getRequestWalkByUniqueId(String uniqueId) {
+    public RequestWalk[] getAll(){
+        try{
+            Query query = Query.select();
+            IRequestWalk[] entities = ao.find(IRequestWalk.class,query);
+
+            if(entities != null && entities.length > 0){
+                RequestWalk [] requestWalks = new RequestWalk[entities.length];
+
+                for (int i = 0; i < entities.length; i++) {
+                    requestWalks[i] = RequestWalk.fromEntity(entities[i]);
+                }
+                return requestWalks;
+            }
+        }catch (Exception ex){
+            String exs = ex.getMessage();
+        }
+        return null;
+    }
+
+    public RequestWalk getByUniqueId(String uniqueId) {
         try {
             Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
             IRequestWalk[] entities = ao.find(IRequestWalk.class, query);
@@ -64,12 +83,20 @@ public class RequestWalkManager {
         return null;
     }
 
-    public boolean updateRequestWalk(RequestWalk model) {
+    public boolean update(RequestWalk model) {
         try {
             if (model != null) {
                 IRequestWalk entity = getEntityByUniqueId(model.getUniqueId());
+
                 if (entity != null) {
-                    model.toEntity(entity);
+                    RequestWalk requestWalk = RequestWalk.fromEntity(entity);
+
+                    if(requestWalk.getDogWalkerId().equals("No dog walker")){
+                        requestWalk.setDogWalkerId(model.getDogWalkerId());
+                    }
+                    requestWalk.setRequestWalkStatus(model.getRequestWalkStatus());
+
+                    requestWalk.toEntity(entity);
                     entity.save();
                     return true;
                 }

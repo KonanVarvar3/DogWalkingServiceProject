@@ -3,10 +3,6 @@ h1 {
     background: antiquewhite;
 }
 
-h2 {
-    text-align: center;
-}
-
 table {
     border: 1px solid black;
     font-size: 20px
@@ -22,54 +18,41 @@ td {
     padding: 5px;
 }
 
-#findTable{
-    width: 100%;
+h2 {
+    text-align: center;
 }
 
-#clientTable{
-    width: 100%;
-}
-
-#createClientTable {
-    margin: auto;
-    width: 45%;
-}
-
-#newClt {
+#newReq {
     color: green;
     display: none;
     font-size: 20px;
     text-align: center;
-    margin-left: 70%;
+    margin-left: 85%;
     position: fixed;
     margin-top: 2%;
 }
 
-#findClient {
-    margin: auto;
-    width: 45%;
+#findReq {
+    margin: 0 auto;
+    width: 40%;
 }
 
-#uniqueId {
+#createRequestTable {
+    margin: 0 auto;
+    width: 40%;
+}
+
+#uniqueIdReq {
     margin-left: 4%;
     width: 90%;
 }
 
-#lastName, #name, #middleName, #birthDate, #phoneNumber, #email, #address {
+#selectReqOwner, #selectPet, #requestPlace, #timeWalk, #walkDuration {
     margin-left: 4%;
     width: 90%;
 }
 
-#email {
-    margin-left: 4%;
-    width: 60%;
-}
-
-#selectDomains {
-    width: 30%
-}
-
-#createButton {
+#createButtonReq {
     margin-left: 4%;
     width: 90%;
 }
@@ -79,8 +62,8 @@ td {
     text-align: center;
     float: left;
     position: fixed;
-    margin-right: 3%;
     margin-top: 2%;
+    margin-left: 3%;
 }
 
 #menuTable {
@@ -91,7 +74,7 @@ td {
     width: 95%;
 }
 
-#contentClientPage {
+#contentRequestPage {
     margin: 0 15%;
     border: 3px solid gray;
 }
@@ -113,49 +96,37 @@ td {
 /*    border: 0;*/
 /*}*/
 
-#footerClient {
+#footerReq {
     background: aquamarine;
     height: 5%;
     width: 100%;
 }
 
-#inputLastName {
+#inputOwner {
     text-align: center;
     color: red;
     font-size: 20px;
 }
 
-#inputName {
+#inputPet {
     text-align: center;
     color: red;
     font-size: 20px;
 }
 
-#inputMiddleName {
+#inputRequestPlace {
     text-align: center;
     color: red;
     font-size: 20px;
 }
 
-#inputBirthday {
+#inputTimeWalk {
     text-align: center;
     color: red;
     font-size: 20px;
 }
 
-#inputPhone {
-    text-align: center;
-    color: red;
-    font-size: 20px;
-}
-
-#inputEmail {
-    text-align: center;
-    color: red;
-    font-size: 20px;
-}
-
-#inputAddress {
+#inputWalkDuration {
     text-align: center;
     color: red;
     font-size: 20px;

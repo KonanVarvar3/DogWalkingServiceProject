@@ -48,7 +48,6 @@ function formFindDogWalker() {
 
 function checkValid() {
     let valid = document.getElementsByClassName("inputDogWalker");
-    let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
     let check = true;
 
@@ -74,10 +73,6 @@ function checkValid() {
                     document.getElementById("inputEmailDW").innerHTML = "Fill Email!";
                     break;
             }
-            check = false;
-
-        } else if (reg.test(valid[5].value) === false) {
-            document.getElementById("inputEmailDW").innerHTML = "Incorrect Email!";
             check = false;
         }
     }
@@ -108,15 +103,6 @@ function inputValueEmailDW() {
     document.getElementById("inputEmailDW").innerHTML = "";
 }
 
-$(function () {
-    $('#date').daterangepicker({
-        singleDatePicker: true,
-        locale: {
-            format: 'DD.MM.YYYY'
-        }
-    });
-});
-
 function crtDW() {
     if (checkValid() === true) {
         let out = document.getElementById("outDW");
@@ -127,7 +113,8 @@ function crtDW() {
         newDogWalker.middleName = document.getElementById("middleNameDW").value;
         newDogWalker.birthDate = document.getElementById("birthDateDW").value;
         newDogWalker.phoneNumber = document.getElementById("phoneNumberDW").value;
-        newDogWalker.email = document.getElementById("emailDW").value;
+        newDogWalker.email = document.getElementById("emailDW").value
+            +document.getElementById("selectDomainsDW").value;
 
         objectDogWalker = JSON.stringify(newDogWalker);
 
@@ -225,7 +212,7 @@ function addDataFindDW(array, table) {
                 key = array.email;
                 break;
             case 7:
-                key = array.status;
+                key = array.dogWalkerStatus;
                 break;
         }
         addCol.innerHTML = key;
@@ -269,7 +256,7 @@ function addDataTableDW(array, table) {
                     key = array[i].email;
                     break;
                 case 7:
-                    key = array[i].status;
+                    key = array[i].dogWalkerStatus;
                     break;
             }
             addCol.innerHTML = key;

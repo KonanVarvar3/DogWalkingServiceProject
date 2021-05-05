@@ -28,7 +28,7 @@
         <tr>
             <td>
                 <a href="/plugins/servlet/servlet-inf/site/infDog.html">
-                    <input type="button" id="menuButton2" value="Go to pet">
+                    <input type="button" id="menuButton2" value="Go to pets">
                 </a>
             </td>
         </tr>
@@ -41,8 +41,8 @@
         </tr>
         <tr>
             <td>
-                <a href="/plugins/servlet/servlet-inf/site/mainPage.html">
-                    <input type="button" id="menuButton4" value="Go to request">
+                <a href="/plugins/servlet/servlet-inf/site/infRequestWalk.html">
+                    <input type="button" id="menuButton4" value="Go to requests">
                 </a>
             </td>
         </tr>
@@ -121,14 +121,14 @@
                 Birth date:
             </td>
             <td>
-                <input type="date" onclick="inputValueBirthday()"
-                       class="form-control, inputClient" id="birthDate" name="date" required>
+                <input type="date" onclick="inputValueBirthday()" class="inputClient, form-control"
+                       id="birthDate" placeholder="dd.mm.yyyy" name="date" required>
                 <div id="inputBirthday"></div>
             </td>
         </tr>
         <tr>
             <td>
-                number:
+                Phone number:
             </td>
             <td>
                 <input type="text" onclick="inputValuePhone()" class="inputClient"
@@ -142,7 +142,18 @@
             </td>
             <td>
                 <input type="text" onclick="inputValueEmail()" class="inputClient"
-                       id="email" placeholder="something@mail.ru">
+                       id="email" placeholder="something">
+                <select id="selectDomains">
+                    <option value="@mail.ru">
+                        @mail.ru
+                    </option>
+                    <option value="@yandex.ru">
+                        @yandex.ru
+                    </option>
+                    <option value="@gmail.com">
+                        @gmail.com
+                    </option>
+                </select>
                 <div id="inputEmail"></div>
             </td>
         </tr>

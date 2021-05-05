@@ -8,7 +8,6 @@ import com.dvoryanchikov.dogWalkingService.myPlugin.models.Client;
 public class ClientIssueService{
 
     public boolean create(Client client) {
-
         try{
             IssueService issueService = ComponentAccessor.getIssueService();
             IssueInputParameters issueInputParameters = issueService.newIssueInputParameters();
@@ -30,7 +29,6 @@ public class ClientIssueService{
                             issueInputParameters);
 
             if (createValidationResult.isValid()) {
-
                 issueService.create(ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser(),
                         createValidationResult);
 
@@ -40,7 +38,6 @@ public class ClientIssueService{
         }catch (Exception ex){
             String exs = ex.getMessage();
         }
-
         return false;
     }
 }
