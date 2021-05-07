@@ -444,6 +444,7 @@ function pickRequest(dogId) {
     let butn = document.createElement("input");
     butn.type = "button";
     butn.value = "Pick request";
+
     butn.addEventListener("click", function () {
         let idDivButton = butn.parentElement.id;
         let idRow = document.getElementById("row" + idDivButton);

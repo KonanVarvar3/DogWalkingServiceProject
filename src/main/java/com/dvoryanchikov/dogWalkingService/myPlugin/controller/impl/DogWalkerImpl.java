@@ -56,4 +56,14 @@ public class DogWalkerImpl {
             return StatusResponse.updateFail(ex.getMessage());
         }
     }
+
+    public StatusResponse allUpdateDogWalker(DogWalker model){
+        try{
+            dogWalkerService.allUpdateDogWalker(model);
+            return StatusResponse.updateSuccess("Dog: " + model.getUniqueId());
+
+        }catch (Exception ex){
+            return StatusResponse.updateFail(ex.getMessage());
+        }
+    }
 }

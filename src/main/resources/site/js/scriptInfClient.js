@@ -36,7 +36,10 @@ function formFindClient() {
 
             let table = document.createElement("table");
 
-            createTitleTable(table);
+            let row = document.createElement("tr");
+            table.append(row);
+
+            createTitleTable(table, row);
 
             addDataFind(data, table);
 
@@ -141,11 +144,13 @@ function crt() {
                 document.getElementById("email").value = "";
                 document.getElementById("address").value = "";
 
-                document.getElementById("newClt").style.display = "block";
+                let inf = document.getElementById("newClt");
+                inf.innerText = "Client has been created!";
+                inf.style.display = "block";
 
                 setTimeout(function () {
-                    document.getElementById("newClt").style.display = "none";
-                }, 3000);
+                    inf.style.display = "none";
+                }, 5000);
 
                 addFromBd();
             }
@@ -153,10 +158,7 @@ function crt() {
     }
 }
 
-function createTitleTable(table) {
-    let row = document.createElement("tr");
-    table.append(row);
-
+function createTitleTable(row) {
     let col1 = document.createElement("td");
     col1.innerHTML = "Unique ID";
     row.append(col1);
@@ -232,63 +234,288 @@ function toDate(value) {
     return date.toLocaleDateString();
 }
 
-function addDataTable(array, table) {
-    for (let i = 0; i < array.length; i++) {
+//Functions for edit mode
+function createModeEditRow(array, addRow) {
+    for (let i = 0; i < 9; i++) {
+        let addCol = document.createElement('td');
 
-        let addRow = document.createElement('tr');
-        table.append(addRow);
+        if (i < 8) {
+            let key = array.uniqueId;
 
-        for (let j = 0; j < 8; j++) {
-            let addCol = document.createElement('td');
-
-            let key = array[i].uniqueId;
-
-            switch (j) {
+            switch (i) {
                 case 1:
-                    key = array[i].lastName;
+                    key = array.lastName;
                     break;
                 case 2:
-                    key = array[i].name;
+                    key = array.name;
                     break;
                 case 3:
-                    key = array[i].middleName;
+                    key = array.middleName;
                     break;
                 case 4:
-                    key = toDate(array[i].birthDate);
+                    key = toDate(array.birthDate);
                     break;
                 case 5:
-                    key = array[i].phoneNumber;
+                    key = array.phoneNumber;
                     break;
                 case 6:
-                    key = array[i].email;
+                    key = array.email;
                     break;
                 case 7:
-                    key = array[i].address;
+                    key = array.address;
                     break;
             }
-            addCol.innerHTML = key;
+            if (i === 0) {
+                addCol.innerHTML = key;
+
+            }else if(i === 4){
+                let calendar = document.createElement("input");
+                calendar.type = "date";
+                calendar.className = "form-control";
+                calendar.value = key;
+                addCol.append(calendar);
+            }
+            else {
+                let field = document.createElement("input");
+                field.style.width = "80%";
+                field.value = key;
+                addCol.append(field);
+            }
+            addRow.append(addCol);
+
+        } else {
+            addCol.append(createButtonsEditMode(addRow));
             addRow.append(addCol);
         }
     }
 }
 
-function addFromBd() {
+function createButtonsEditMode(row) {
+    let parent = document.createElement("div");
+    parent.append(cancel());
+    parent.append(saveButton(row));
+    return parent;
+}
+
+function saveButton(row) {
+    let saveButton = document.createElement("input");
+    saveButton.type = "button";
+    saveButton.value = "Save";
+
+    saveButton.addEventListener("click", function () {
+        let question = confirm("Are you sure?");
+        if(question) saveChanges(row);
+    });
+    return saveButton;
+}
+
+function saveChanges(row) {
+    let editObject = {
+        uniqueId: row.children[0].textContent,
+        lastName: row.children[1].children[0].value,
+        name: row.children[2].children[0].value,
+        middleName: row.children[3].children[0].value,
+        birthDate: row.children[4].children[0].value,
+        phoneNumber: row.children[5].children[0].value,
+        email: row.children[6].children[0].value,
+        address: row.children[7].children[0].value,
+    };
+
+    let sendObject = JSON.stringify(editObject);
+
+    AJS.$.ajax({
+        type: "put",
+        url: "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/updateClient",
+        dataType: "json",
+        contentType:"application/json; charset=utf-8",
+        data: sendObject,
+
+        success: function () {
+            let inf = document.getElementById("newClt");
+            inf.innerText = "";
+            inf.innerText = "Changes saved!";
+            inf.style.display = "block";
+
+            setTimeout(function () {
+                inf.style.display = "none";
+            }, 5000);
+
+            addFromBd();
+        }
+    });
+}
+
+function cancel() {
+    let cancelButton = document.createElement("input");
+    cancelButton.type = "button";
+    cancelButton.value = "Cancel";
+
+    cancelButton.addEventListener("click", function () {
+        let inf = document.getElementById("newClt");
+        inf.innerText = "";
+        inf.innerText = "Editing canceled!";
+        inf.style.display = "block";
+
+        setTimeout(function () {
+            inf.style.display = "none";
+        }, 5000);
+
+        addFromBd();
+    });
+    return cancelButton;
+}
+
+/////////////////////////////////
+
+function addDataTable(array, table, idEditRow) {
+    for (let i = 0; i < array.length; i++) {
+        let addRow = document.createElement('tr');
+        addRow.id = "row" + i;
+        table.append(addRow);
+
+        if (addRow.id === idEditRow) {
+            createModeEditRow(array[i], addRow);
+
+        } else {
+            for (let j = 0; j < 9; j++) {
+                let addCol = document.createElement('td');
+
+                if (j < 8) {
+                    let key = array[i].uniqueId;
+
+                    switch (j) {
+                        case 1:
+                            key = array[i].lastName;
+                            break;
+                        case 2:
+                            key = array[i].name;
+                            break;
+                        case 3:
+                            key = array[i].middleName;
+                            break;
+                        case 4:
+                            key = toDate(array[i].birthDate);
+                            break;
+                        case 5:
+                            key = array[i].phoneNumber;
+                            break;
+                        case 6:
+                            key = array[i].email;
+                            break;
+                        case 7:
+                            key = array[i].address;
+                            break;
+                    }
+                    addCol.innerHTML = key;
+                    addRow.append(addCol);
+
+                } else {
+                    addCol.append(createEdit("" + i));
+                    addRow.append(addCol);
+                }
+            }
+        }
+    }
+}
+
+//Function for edit
+function createEdit(id) {
+    let parent = document.createElement("div");
+    parent.id = id;
+    parent.append(createButnEdit(id));
+    parent.append(createButnDelete(id));
+    return parent;
+}
+
+function createButnEdit(id) {
+    let buttonEdit = document.createElement("input");
+    buttonEdit.type = "button";
+    buttonEdit.value = "Edit";
+
+    buttonEdit.addEventListener("click", function () {
+        let idChangeButtonDiv = buttonEdit.parentElement.id;
+        let row = document.getElementById("row" + idChangeButtonDiv);
+        addFromBd(row.id);
+
+        let inf = document.getElementById("newClt");
+        inf.innerText = "";
+        inf.innerText = "Edit mode activated";
+        inf.style.display = "block";
+
+        setTimeout(function () {
+            inf.style.display = "none";
+        }, 5000);
+    });
+    return buttonEdit;
+}
+
+function createButnDelete() {
+    let buttonDelete = document.createElement("input");
+    buttonDelete.type = "button";
+    buttonDelete.value = "Delete";
+
+    buttonDelete.addEventListener("click", function () {
+        let question = confirm("Are you sure?");
+
+        if(question){
+            let idDetButtonDiv = buttonDelete.parentElement.id;
+            let row = document.getElementById("row" + idDetButtonDiv);
+            let clientId = row.children[0].textContent;
+            let clientFullName = row.children[1].textContent + " " + row.children[2].textContent;
+            deleteClient(clientId, clientFullName);
+        }
+    });
+    return buttonDelete;
+}
+
+function deleteClient(clientId, clientFullName) {
+    AJS.$.ajax({
+        type: "delete",
+        url: "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/deleteClient?uniqueId=" + clientId,
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: "json",
+
+        success: function () {
+            addFromBd();
+
+            let inf = document.getElementById("newClt");
+            inf.innerText = "";
+            inf.innerText = "Client: " + clientFullName + " deleted!";
+            inf.style.display = "block";
+
+            setTimeout(function () {
+                inf.style.display = "none";
+            }, 5000);
+        }
+    });
+}
+///////////////////////////////
+
+function addFromBd(idEditRow) {
     AJS.$.ajax({
         type: 'get',
         url: "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/allClients",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         data: 'json',
+
         success: function (data) {
 
             let parent = document.getElementById("clientTable");
             parent.innerHTML = "";
 
             let table = document.createElement("table");
+            let row = document.createElement("tr");
 
-            createTitleTable(table);
+            createTitleTable(row);
 
-            addDataTable(data, table);
+            let col = document.createElement("td");
+            col.innerHTML = "Edit";
+            row.append(col);
+            table.append(row);
+
+            addDataTable(data, table, idEditRow);
 
             parent.append(table);
         }

@@ -59,4 +59,14 @@ public class DogImpl {
             return StatusResponse.updateFail(ex.getMessage());
         }
     }
+
+    public StatusResponse fullUpdateDog(Dog model){
+        try{
+            dogService.fullUpdateDog(model);
+            return StatusResponse.updateSuccess("Dog: " + model.getUniqueId());
+
+        }catch (Exception ex){
+            return StatusResponse.updateFail(ex.getMessage());
+        }
+    }
 }

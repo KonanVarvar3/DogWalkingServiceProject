@@ -108,6 +108,24 @@ public class DogManager {
         return null;
     }
 
+    //Update using all field of getting model
+    public boolean fullUpdate(Dog model){
+        try {
+            if (model != null) {
+                IDog entity = getEntityByUniqueId(model.getUniqueId());
+
+                if (entity != null) {
+                    model.toEntity(entity);
+                    entity.save();
+                    return true;
+                }
+            }
+        } catch (Exception ex) {
+            String exs = ex.getMessage();
+        }
+        return false;
+    }
+
     public boolean update(Dog model) {
         try {
             if (model != null) {

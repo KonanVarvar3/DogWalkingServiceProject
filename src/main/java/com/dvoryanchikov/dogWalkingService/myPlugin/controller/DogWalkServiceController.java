@@ -102,6 +102,12 @@ public class DogWalkServiceController {
     }
 
     @PUT
+    @Path("/fullUpdateDog")
+    public Response fullUpdateDog(Dog dog) {
+        return Response.ok(getDogImpl().fullUpdateDog(dog)).build();
+    }
+
+    @PUT
     @Path("/updateDog")
     public Response updateDog(Dog dog) {
         return Response.ok(getDogImpl().updateDog(dog)).build();
@@ -140,6 +146,12 @@ public class DogWalkServiceController {
     @Path("/allDogWalkers")
     public Response getAllDogWalkers() {
         return Response.ok(getDogWalkerImpl().getAllDogWalkers()).build();
+    }
+
+    @PUT
+    @Path("/allUpdateDogWalker")
+    public Response allUpdateDogWalker(DogWalker dogWalker) {
+        return Response.ok(getDogWalkerImpl().allUpdateDogWalker(dogWalker)).build();
     }
 
     @PUT

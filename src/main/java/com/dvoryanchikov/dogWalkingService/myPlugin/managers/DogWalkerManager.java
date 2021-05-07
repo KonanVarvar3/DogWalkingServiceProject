@@ -86,6 +86,23 @@ public class DogWalkerManager {
         return null;
     }
 
+    public boolean allUpdate(DogWalker model) {
+        try {
+            if (model != null) {
+                IDogWalker entity = getEntityByUniqueId(model.getUniqueId());
+
+                if (entity != null) {
+                    model.toEntity(entity);
+                    entity.save();
+                    return true;
+                }
+            }
+        } catch (Exception ex) {
+            String exs = ex.getMessage();
+        }
+        return false;
+    }
+
     public boolean update(DogWalker model) {
         try {
             if (model != null) {

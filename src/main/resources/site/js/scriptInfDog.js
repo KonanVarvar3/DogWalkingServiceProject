@@ -10,7 +10,7 @@ let newDog = {
     ownerId: "no owner"
 }
 
-loadOwners();
+loadOwners("selectOwner");
 
 function clearDog() {
     let parent = document.getElementById("findTableD");
@@ -44,20 +44,6 @@ function findClient(id) {
         owner = array.name + " " + array.lastName;
     }
     return owner;
-
-    // AJS.$.ajax({
-    //     async: 'false',
-    //     type: 'get',
-    //     url: "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/client?uniqueId=" + str,
-    //     dataType: "json",
-    //     contentType: "application/json; charset=utf-8",
-    //     data: 'json',
-    //
-    //     success: function (data) {
-    //         owner = data.lastName + " " + data.name;
-    //         return owner;
-    //     }
-    // });
 }
 
 function formFindDog() {
@@ -75,8 +61,10 @@ function formFindDog() {
             parent.innerHTML = "";
 
             let table = document.createElement("table");
+            let row = document.createElement("tr");
+            table.append(row);
 
-            createTitleTableD(table);
+            createTitleTableD(row);
 
             addDataFindD(data, table);
 
@@ -172,11 +160,14 @@ function crtD() {
                 document.getElementById("color").value = "";
                 document.getElementById("dogCharacter").value = "";
 
-                document.getElementById("newDg").style.display = "block";
+                let infDog = document.getElementById("newDg");
+                infDog.innerText = "";
+                infDog.innerText = "Dog has been created!";
+                infDog.style.display = "block";
 
                 setTimeout(function () {
                     document.getElementById("newDg").style.display = "none";
-                }, 3000);
+                }, 5000);
 
                 addFromBdD();
             }
@@ -184,11 +175,7 @@ function crtD() {
     }
 }
 
-function createTitleTableD(table) {
-
-    let row = document.createElement("tr");
-    table.append(row);
-
+function createTitleTableD(row) {
     let col1 = document.createElement("td");
     col1.innerHTML = "Unique ID";
     row.append(col1);
@@ -271,49 +258,288 @@ function addDataFindD(array, table) {
     }
 }
 
-function addDataTableD(array, table) {
-    for (let i = 0; i < array.length; i++) {
-        let addRow = document.createElement('tr');
-        table.append(addRow);
+//Functions for edit mode
+function createModeEditRow(array, addRow) {
+    for (let i = 0; i < 10; i++) {
+        let addCol = document.createElement('td');
 
-        for (let j = 0; j < 9; j++) {
-            let addCol = document.createElement('td');
+        if (i < 9) {
+            let key = array.uniqueId;
 
-            let key = array[i].uniqueId;
-
-            switch (j) {
+            switch (i) {
                 case 1:
-                    key = array[i].dogName;
+                    key = array.dogName;
                     break;
                 case 2:
-                    key = array[i].gender;
+                    key = array.gender;
                     break;
                 case 3:
-                    key = toDate(array[i].dogBirthDate);
+                    key = toDate(array.dogBirthDate);
                     break;
                 case 4:
-                    key = array[i].breed;
+                    key = array.breed;
                     break;
                 case 5:
-                    key = array[i].color;
+                    key = array.color;
                     break;
                 case 6:
-                    key = array[i].dogCharacter;
+                    key = array.dogCharacter;
                     break;
                 case 7:
-                    key = array[i].dogStatus;
+                    key = array.dogStatus;
                     break;
                 case 8:
-                    key = findClient(array[i].ownerId);
-                    break;
+                    key = findClient(array.ownerId);
             }
-            addCol.innerHTML = key;
+            if (i === 0 || i === 7) {
+                addCol.innerHTML = key;
+
+            }else if(i === 3){
+                createCalendar(addCol);
+            }
+            else if(i === 8){
+                createSelect(addCol);
+            }
+            else {
+                createInput(addCol, key);
+            }
+            addRow.append(addCol);
+
+        } else {
+            addCol.append(createButtonsEditMode(addRow));
             addRow.append(addCol);
         }
     }
 }
 
-function loadOwners() {
+function createInput(col, key) {
+    let field = document.createElement("input");
+    field.style.width = "80%";
+    field.value = key;
+    col.append(field);
+}
+
+function createSelect(col) {
+    let select = document.createElement("select");
+    select.id = "selectEdit";
+    loadOwners("selectEdit");
+    select.style.width = "80%";
+    col.append(select);
+}
+
+function createCalendar(col) {
+    let calendar = document.createElement("input");
+    calendar.type = "date";
+    calendar.className = "form-control";
+    col.append(calendar);
+}
+
+function createButtonsEditMode(row) {
+    let parent = document.createElement("div");
+    parent.append(cancel());
+    parent.append(saveButton(row));
+    return parent;
+}
+
+function saveButton(row) {
+    let saveButton = document.createElement("input");
+    saveButton.type = "button";
+    saveButton.value = "Save";
+
+    saveButton.addEventListener("click", function () {
+        let question = confirm("Are you sure?");
+        if(question) saveChanges(row);
+    });
+    return saveButton;
+}
+
+function saveChanges(row) {
+    let editObject = {
+        uniqueId: row.children[0].textContent,
+        dogName: row.children[1].children[0].value,
+        gender: row.children[2].children[0].value,
+        dogBirthDate: row.children[3].children[0].value,
+        breed: row.children[4].children[0].value,
+        color: row.children[5].children[0].value,
+        dogCharacter: row.children[6].children[0].value,
+        dogStatus: row.children[7].textContent,
+        ownerId: row.children[8].children[0].value
+    };
+
+    let sendObject = JSON.stringify(editObject);
+
+    AJS.$.ajax({
+        type: "put",
+        url: "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/fullUpdateDog",
+        dataType: "json",
+        contentType:"application/json; charset=utf-8",
+        data: sendObject,
+
+        success: function () {
+            let inf = document.getElementById("newDg");
+            inf.innerText = "";
+            inf.innerText = "Changes saved!";
+            inf.style.display = "block";
+
+            setTimeout(function () {
+                inf.style.display = "none";
+            }, 5000);
+
+            addFromBdD();
+        }
+    });
+}
+
+function cancel() {
+    let cancelButton = document.createElement("input");
+    cancelButton.type = "button";
+    cancelButton.value = "Cancel";
+
+    cancelButton.addEventListener("click", function () {
+        let inf = document.getElementById("newDg");
+        inf.innerText = "";
+        inf.innerText = "Editing canceled!";
+        inf.style.display = "block";
+
+        setTimeout(function () {
+            inf.style.display = "none";
+        }, 5000);
+
+        addFromBdD();
+    });
+    return cancelButton;
+}
+/////////////////////////////////
+
+function addDataTableD(array, table, idEditRow) {
+    for (let i = 0; i < array.length; i++) {
+        let addRow = document.createElement('tr');
+        addRow.id = "row" + i;
+        table.append(addRow);
+
+        if (addRow.id === idEditRow) {
+            createModeEditRow(array[i], addRow);
+
+        } else {
+            for (let j = 0; j < 10; j++) {
+                let addCol = document.createElement('td');
+
+                if (j < 9) {
+                    let key = array[i].uniqueId;
+
+                    switch (j) {
+                        case 1:
+                            key = array[i].dogName;
+                            break;
+                        case 2:
+                            key = array[i].gender;
+                            break;
+                        case 3:
+                            key = toDate(array[i].dogBirthDate);
+                            break;
+                        case 4:
+                            key = array[i].breed;
+                            break;
+                        case 5:
+                            key = array[i].color;
+                            break;
+                        case 6:
+                            key = array[i].dogCharacter;
+                            break;
+                        case 7:
+                            key = array[i].dogStatus;
+                            break;
+                        case 8:
+                            key = findClient(array[i].ownerId);
+                            break;
+                    }
+                    addCol.innerHTML = key;
+                    addRow.append(addCol);
+
+                }else {
+                    addCol.append(createEdit("" + i));
+                    addRow.append(addCol);
+                }
+            }
+        }
+    }
+}
+
+//Function for edit
+function createEdit(id) {
+    let parent = document.createElement("div");
+    parent.id = id;
+    parent.append(createButnEdit(id));
+    parent.append(createButnDelete(id));
+    return parent;
+}
+
+function createButnEdit() {
+    let buttonEdit = document.createElement("input");
+    buttonEdit.type = "button";
+    buttonEdit.value = "Edit";
+
+    buttonEdit.addEventListener("click", function () {
+        let idChangeButtonDiv = buttonEdit.parentElement.id;
+        let row = document.getElementById("row" + idChangeButtonDiv);
+        addFromBdD(row.id);
+
+        let inf = document.getElementById("newDg");
+        inf.innerText = "";
+        inf.innerText = "Edit mode activated!";
+        inf.style.display = "block";
+
+        setTimeout(function () {
+            inf.style.display = "none";
+        }, 5000);
+    });
+    return buttonEdit;
+}
+
+function createButnDelete() {
+    let buttonDelete = document.createElement("input");
+    buttonDelete.type = "button";
+    buttonDelete.value = "Delete";
+
+    buttonDelete.addEventListener("click", function () {
+        let question = confirm("Are you sure?");
+
+        if(question){
+            let idDetButtonDiv = buttonDelete.parentElement.id;
+            let row = document.getElementById("row" + idDetButtonDiv);
+            let dogId = row.children[0].textContent;
+            let dogFullName = row.children[1].textContent + " " + row.children[4].textContent;
+            deleteDog(dogId, dogFullName);
+        }
+    });
+    return buttonDelete;
+}
+
+function deleteDog(dogId, dogFullName) {
+    AJS.$.ajax({
+        type: "delete",
+        url: "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/deleteDog?uniqueId=" + dogId,
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: "json",
+
+        success: function () {
+            addFromBdD();
+
+            let inf = document.getElementById("newDg");
+            inf.innerText = "";
+            inf.innerText = "Pet: " + dogFullName + " deleted!";
+            inf.style.display = "block";
+
+            setTimeout(function () {
+                inf.style.display = "none";
+            }, 5000);
+        }
+    });
+}
+///////////////////////////////
+
+function loadOwners(id) {
     AJS.$.ajax({
         type: 'get',
         url: "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/allClients",
@@ -323,7 +549,7 @@ function loadOwners() {
 
         success: function (data) {
             if(data !== ""){
-                let parent = document.getElementById("selectOwner");
+                let parent = document.getElementById(id);
                 parent.innerHTML = "";
 
                 for (let i = 0; i < data.length; i++) {
@@ -337,7 +563,7 @@ function loadOwners() {
     });
 }
 
-function addFromBdD() {
+function addFromBdD(idEditRow) {
     AJS.$.ajax({
         type: 'get',
         url: "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/allDogs",
@@ -350,10 +576,16 @@ function addFromBdD() {
             parent.innerHTML = "";
 
             let table = document.createElement("table");
+            let row = document.createElement("tr");
 
-            createTitleTableD(table);
+            createTitleTableD(row);
 
-            addDataTableD(data, table);
+            let col = document.createElement("td");
+            col.innerHTML = "Edit";
+            row.append(col);
+            table.append(row);
+
+            addDataTableD(data, table, idEditRow);
 
             parent.append(table);
         }

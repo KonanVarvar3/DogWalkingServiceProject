@@ -46,4 +46,9 @@ public class DogWalkerService {
 
         return dogWalkerManager.update(model);
     }
+
+    public boolean allUpdateDogWalker(DogWalker model) {
+
+        return dogWalkerManager.allUpdate(model);
+    }
 }

@@ -43,4 +43,8 @@ public class DogService {
     public boolean updateDog(Dog model) {
         return dogManager.update(model);
     }
+
+    public boolean fullUpdateDog(Dog model) {
+        return dogManager.fullUpdate(model);
+    }
 }
