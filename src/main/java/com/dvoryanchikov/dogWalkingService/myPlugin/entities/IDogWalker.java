@@ -39,4 +39,8 @@ public interface IDogWalker extends Entity {
 
     void setUniqueId(String uniqueId);
 
+    String getIssueId();
+
+    void setIssueId(String issueId);
+
 }

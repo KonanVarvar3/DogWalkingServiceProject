@@ -8,6 +8,7 @@ public class UniqID {
 
     @JsonProperty("uniqueId")
     private String uniqueId;
+    private String issueId;
 
     public UniqID(){
         this.uniqueId = UUID.randomUUID().toString();
@@ -19,5 +20,13 @@ public class UniqID {
 
     public void setUniqueId(String uniqueId) {
         this.uniqueId = uniqueId;
+    }
+
+    public String getIssueId(){
+        return issueId;
+    }
+
+    public void setIssueId(String issueId){
+        this.issueId = issueId;
     }
 }

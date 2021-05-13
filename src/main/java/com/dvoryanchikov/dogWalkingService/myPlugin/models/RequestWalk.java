@@ -93,6 +93,7 @@ public class RequestWalk extends UniqID{
         entity.setUniqueId(this.getUniqueId());
         entity.setClientId(this.getClientId());
         entity.setDogWalkerId(this.getDogWalkerId());
+        entity.setIssueId(this.getIssueId());
     }
 
     public static RequestWalk fromEntity(IRequestWalk entity){
@@ -105,6 +106,7 @@ public class RequestWalk extends UniqID{
         requestWalk.setUniqueId(entity.getUniqueId());
         requestWalk.setClientId(entity.getClientId());
         requestWalk.setDogWalkerId(entity.getDogWalkerId());
+        requestWalk.setIssueId(entity.getIssueId());
         return requestWalk;
     }
 }

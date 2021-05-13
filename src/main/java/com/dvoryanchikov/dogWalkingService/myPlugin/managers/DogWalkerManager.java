@@ -90,6 +90,8 @@ public class DogWalkerManager {
         try {
             if (model != null) {
                 IDogWalker entity = getEntityByUniqueId(model.getUniqueId());
+                DogWalker dogWalker = getByUniqueId(model.getUniqueId());
+                model.setIssueId(dogWalker.getIssueId());
 
                 if (entity != null) {
                     model.toEntity(entity);

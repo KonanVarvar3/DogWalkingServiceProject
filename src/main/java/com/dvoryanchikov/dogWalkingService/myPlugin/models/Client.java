@@ -26,6 +26,7 @@ public class Client extends Human {
         entity.setEmail(this.getEmail());
         entity.setAddress(this.getAddress());
         entity.setUniqueId(this.getUniqueId());
+        entity.setIssueId(this.getIssueId());
     }
 
     public static Client fromEntity(IClient entity) {
@@ -38,6 +39,7 @@ public class Client extends Human {
         client.setEmail(entity.getEmail());
         client.setAddress(entity.getAddress());
         client.setUniqueId(entity.getUniqueId());
+        client.setIssueId(entity.getIssueId());
         return client;
     }
 }

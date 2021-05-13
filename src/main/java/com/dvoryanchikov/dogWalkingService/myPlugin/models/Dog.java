@@ -110,6 +110,7 @@ public class Dog extends UniqID{
         entity.setDogStatus(this.getDogStatus());
         entity.setUniqueId(this.getUniqueId());
         entity.setOwnerId(this.getOwnerId());
+        entity.setIssueId(this.getIssueId());
     }
 
     public static Dog fromEntity(IDog entity) {
@@ -123,6 +124,7 @@ public class Dog extends UniqID{
         dog.setDogStatus(entity.getDogStatus());
         dog.setUniqueId(entity.getUniqueId());
         dog.setOwnerId(entity.getOwnerId());
+        dog.setIssueId(entity.getIssueId());
         return dog;
     }
 }

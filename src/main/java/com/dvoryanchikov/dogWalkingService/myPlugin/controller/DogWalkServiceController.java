@@ -9,6 +9,8 @@ import com.dvoryanchikov.dogWalkingService.myPlugin.models.Client;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.Dog;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.DogWalker;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.RequestWalk;
+import com.dvoryanchikov.dogWalkingService.myPlugin.services.RequestWalkService;
+import com.dvoryanchikov.dogWalkingService.myPlugin.services.jira.RequestWalkIssueService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

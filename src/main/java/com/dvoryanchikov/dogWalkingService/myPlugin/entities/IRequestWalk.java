@@ -32,8 +32,6 @@ public interface IRequestWalk extends Entity {
 
     void setUniqueId(String uniqueId);
 
-    void setUniqueId();
-
     String getClientId();
 
     void setClientId(String clientId);
@@ -41,4 +39,8 @@ public interface IRequestWalk extends Entity {
     String getDogWalkerId();
 
     void setDogWalkerId(String dogWalkerId);
+
+    String getIssueId();
+
+    void setIssueId(String issueId);
 }

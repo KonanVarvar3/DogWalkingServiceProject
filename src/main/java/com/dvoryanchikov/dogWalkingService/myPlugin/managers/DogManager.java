@@ -113,6 +113,8 @@ public class DogManager {
         try {
             if (model != null) {
                 IDog entity = getEntityByUniqueId(model.getUniqueId());
+                Dog dog = getByUniqueId(model.getUniqueId());
+                model.setIssueId(dog.getIssueId());
 
                 if (entity != null) {
                     model.toEntity(entity);

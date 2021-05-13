@@ -30,6 +30,7 @@ public class DogWalker extends Human{
         entity.setEmail(this.getEmail());
         entity.setDogWalkerStatus(this.getDogWalkerStatus());
         entity.setUniqueId(this.getUniqueId());
+        entity.setIssueId(this.getIssueId());
     }
 
     public static DogWalker fromEntity(IDogWalker entity) {
@@ -42,6 +43,7 @@ public class DogWalker extends Human{
         dogWalker.setEmail(entity.getEmail());
         dogWalker.setDogWalkerStatus(entity.getDogWalkerStatus());
         dogWalker.setUniqueId(entity.getUniqueId());
+        dogWalker.setIssueId(entity.getIssueId());
         return dogWalker;
     }
 }

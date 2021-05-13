@@ -22,6 +22,18 @@ h2 {
     text-align: center;
 }
 
+#charts, #charts td{
+    border: 0;
+}
+
+#chart1 {
+    margin: auto;
+}
+
+#chart2 {
+    margin: auto;
+}
+
 #newReq {
     color: green;
     display: none;

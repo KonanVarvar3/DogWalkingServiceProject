@@ -26,10 +26,7 @@ public class Human extends UniqID{
     @JsonProperty("email")
     private String email;
 
-
-    public Human() {
-
-    }
+    public Human() {}
 
     public String getLastName() {
         return lastName;
@@ -60,8 +57,6 @@ public class Human extends UniqID{
     }
 
     public void setBirthDate(Date birthDate) {
-        //SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy ");
-        //this.birthDate = formatter.format(birthDate);
         this.birthDate = birthDate;
     }
 

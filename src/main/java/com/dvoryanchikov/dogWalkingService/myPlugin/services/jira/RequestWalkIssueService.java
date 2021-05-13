@@ -3,15 +3,17 @@ package com.dvoryanchikov.dogWalkingService.myPlugin.services.jira;
 import com.atlassian.activeobjects.external.ActiveObjects;
 import com.atlassian.jira.bc.issue.IssueService;
 import com.atlassian.jira.component.ComponentAccessor;
+import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.issue.IssueInputParameters;
+import com.atlassian.jira.issue.IssueInputParametersImpl;
 import com.dvoryanchikov.dogWalkingService.myPlugin.managers.ClientManager;
 import com.dvoryanchikov.dogWalkingService.myPlugin.managers.DogManager;
 import com.dvoryanchikov.dogWalkingService.myPlugin.managers.DogWalkerManager;
+import com.dvoryanchikov.dogWalkingService.myPlugin.managers.RequestWalkManager;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.Client;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.Dog;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.DogWalker;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.RequestWalk;
-
 
 public class RequestWalkIssueService {
 
@@ -19,31 +21,95 @@ public class RequestWalkIssueService {
     private ClientManager clientManager;
     private DogManager dogManager;
     private DogWalkerManager dogWalkerManager;
+    private RequestWalkManager requestWalkManager;
 
-    public RequestWalkIssueService(ActiveObjects ao){
+    public RequestWalkIssueService(ActiveObjects ao) {
         this.ao = ao;
         clientManager = new ClientManager(ao);
         dogManager = new DogManager(ao);
         dogWalkerManager = new DogWalkerManager(ao);
+        requestWalkManager = new RequestWalkManager(ao);
     }
 
-    private String findDogWalker(String id){
-        DogWalker dogWalker = dogWalkerManager.getByUniqueId(id);
-        return dogWalker.getLastName() + " " + dogWalker.getName();
+    private String findDogWalker(String id) {
+        if (!id.equals("No dog walker")) {
+            DogWalker dogWalker = dogWalkerManager.getByUniqueId(id);
+            return dogWalker.getLastName() + " " + dogWalker.getName();
+        } else {
+            return "No dog walker";
+        }
     }
 
-    private String findFullName(String id){
+    private String findFullName(String id) {
         Client client = clientManager.getByUniqueId(id);
         return client.getLastName() + " " + client.getName();
     }
 
-    private String findDogNameAndBreed(String id){
+    private String findDogNameAndBreed(String id) {
         Dog dog = dogManager.getByUniqueId(id);
         return dog.getBreed() + " " + dog.getDogName();
     }
 
-    public boolean create(RequestWalk requestWalk){
+    private String findIdIssue(String id) {
+        RequestWalk requestWalk = requestWalkManager.getByUniqueId(id);
+        return requestWalk.getIssueId();
+    }
+
+    public boolean updateIssue(RequestWalk requestWalk) {
         try{
+            IssueService issueService = ComponentAccessor.getIssueService();
+            IssueInputParameters issueInputParameters = issueService.newIssueInputParameters();
+
+            RequestWalk updatedRequestWalk = requestWalkManager.getByUniqueId(requestWalk.getUniqueId());
+
+            issueInputParameters.addCustomFieldValue("customfield_10220",
+                    updatedRequestWalk.getRequestWalkStatus().toString());
+            issueInputParameters.addCustomFieldValue("customfield_10400",
+                    findDogWalker(updatedRequestWalk.getDogWalkerId()));
+
+            IssueService.UpdateValidationResult updateValidationResult = ComponentAccessor
+                    .getIssueService().validateUpdate(
+                            ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser(),
+                            Long.parseLong(updatedRequestWalk.getIssueId()), issueInputParameters);
+
+            if(updateValidationResult.isValid()) {
+                ComponentAccessor.getIssueService().update(ComponentAccessor
+                                .getJiraAuthenticationContext().getLoggedInUser(),
+                        updateValidationResult);
+            }
+
+        }catch (Exception ex) {
+            String exs = ex.getMessage();
+        }
+        return false;
+    }
+
+    public Boolean changeIssueStatus(RequestWalk requestWalk) {
+        try {
+            int transitionId = 21;
+
+            if (requestWalk.getRequestWalkStatus().toString().equals("WALKING")) transitionId = 11;
+
+            IssueService.TransitionValidationResult transitionValidationResult = ComponentAccessor
+                    .getIssueService().validateTransition(
+                            ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser(),
+                            Long.parseLong(findIdIssue(requestWalk.getUniqueId())),
+                            transitionId, new IssueInputParametersImpl());
+
+            if (transitionValidationResult.isValid()) {
+                ComponentAccessor.getIssueService().transition(ComponentAccessor
+                        .getJiraAuthenticationContext().getLoggedInUser(), transitionValidationResult);
+            }
+            return true;
+
+        } catch (Exception ex) {
+            String exs = ex.getMessage();
+        }
+        return false;
+    }
+
+    public Issue create(RequestWalk requestWalk) {
+        try {
             IssueService issueService = ComponentAccessor.getIssueService();
             IssueInputParameters issueInputParameters = issueService.newIssueInputParameters();
 
@@ -73,16 +139,14 @@ public class RequestWalkIssueService {
                     .validateCreate(ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser(),
                             issueInputParameters);
 
-            if(createValidationResult.isValid()){
-                issueService.create(ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser(),
-                        createValidationResult);
-
-                return true;
+            if (createValidationResult.isValid()) {
+                return issueService.create(ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser(),
+                        createValidationResult).getIssue();
             }
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             String exs = ex.getMessage();
         }
-        return false;
+        return null;
     }
 }

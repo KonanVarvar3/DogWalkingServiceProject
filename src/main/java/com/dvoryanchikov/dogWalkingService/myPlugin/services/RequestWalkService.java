@@ -29,14 +29,17 @@ public class RequestWalkService {
     }
 
     public boolean createRequestWalk(RequestWalk model){
-        return requestWalkManager.save(model) && requestWalkIssueService.create(model);
+        model.setIssueId(requestWalkIssueService.create(model).getId().toString());
+        return requestWalkManager.save(model);
     }
 
     public boolean deleteRequestWalkByUniqueId(String uniqueId){
         return requestWalkManager.deleteByUniqueId(uniqueId);
     }
 
-    public boolean updateRequestWalk(RequestWalk model){
-        return requestWalkManager.update(model);
+    public Boolean updateRequestWalk(RequestWalk model){
+        requestWalkManager.update(model);
+        requestWalkIssueService.updateIssue(model);
+        return requestWalkIssueService.changeIssueStatus(model);
     }
 }

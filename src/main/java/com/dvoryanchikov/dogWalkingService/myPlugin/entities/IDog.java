@@ -42,4 +42,8 @@ public interface IDog extends Entity {
     String getOwnerId();
 
     void setOwnerId(String ownerId);
+
+    String getIssueId();
+
+    void setIssueId(String issueId);
 }

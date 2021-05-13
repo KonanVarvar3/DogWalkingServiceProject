@@ -4,7 +4,10 @@ import com.atlassian.activeobjects.external.ActiveObjects;
 
 import com.dvoryanchikov.dogWalkingService.myPlugin.entities.IClient;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.Client;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.common.StatusResponse;
 import net.java.ao.Query;
+
+import java.util.Arrays;
 
 public class ClientManager {
 
@@ -18,8 +21,7 @@ public class ClientManager {
         return new ClientManager(ao);
     }
 
-    public boolean save(Client model) {
-
+    public Boolean save(Client model) {
         try {
             IClient entity = ao.create(IClient.class);
             model.toEntity(entity);
@@ -34,7 +36,6 @@ public class ClientManager {
     }
 
     public boolean deleteByUniqueId(String uniqueId) {
-
         try {
             Query query = Query.select().where("UNIQUE_ID = '" + uniqueId + "'");
             IClient[] entities = ao.find(IClient.class, query);
@@ -44,6 +45,11 @@ public class ClientManager {
             return true;
 
         } catch (Exception ex) {
+//            StringBuilder exs = new StringBuilder("ERROR: ");
+//
+//            for (int i = 0; i < ex.getStackTrace().length; i++) {
+//                exs.append(" ").append(ex.getStackTrace()[i]);
+//            }
             String exs = ex.getMessage();
         }
         return false;
@@ -97,10 +103,12 @@ public class ClientManager {
     }
 
     public boolean update(Client model) {
-
         try {
             if (model != null) {
                 IClient entity = getEntityByUniqueId(model.getUniqueId());
+                Client client = getByUniqueId(model.getUniqueId());
+                model.setIssueId(client.getIssueId());
+
                 if (entity != null) {
                     model.toEntity(entity);
                     entity.save();

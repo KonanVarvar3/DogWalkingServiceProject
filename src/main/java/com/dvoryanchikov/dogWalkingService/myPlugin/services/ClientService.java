@@ -3,16 +3,18 @@ package com.dvoryanchikov.dogWalkingService.myPlugin.services;
 import com.atlassian.activeobjects.external.ActiveObjects;
 import com.dvoryanchikov.dogWalkingService.myPlugin.managers.ClientManager;
 import com.dvoryanchikov.dogWalkingService.myPlugin.models.Client;
+import com.dvoryanchikov.dogWalkingService.myPlugin.models.common.StatusResponse;
 import com.dvoryanchikov.dogWalkingService.myPlugin.services.jira.ClientIssueService;
 
 public class ClientService {
     private ActiveObjects ao;
     private ClientManager clientManager;
-    private ClientIssueService clientIssueService = new ClientIssueService();
+    private ClientIssueService clientIssueService;
 
     private ClientService(ActiveObjects ao) {
         this.ao = ao;
-        this.clientManager = clientManager.create(ao);
+        clientManager = new ClientManager(ao);
+        clientIssueService = new ClientIssueService(ao);
     }
 
     public static ClientService create(ActiveObjects ao) {
@@ -28,17 +30,15 @@ public class ClientService {
     }
 
     public boolean createClient(Client model) {
-
-        return (clientManager.save(model) && clientIssueService.create(model));
+        model.setIssueId(clientIssueService.create(model).getId().toString());
+        return clientManager.save(model);
     }
 
-    public boolean deleteClientByUniqueId(String uniqueId) {
-
-        return clientManager.deleteByUniqueId(uniqueId);
+    public Boolean deleteClientByUniqueId(String uniqueId) {
+        return clientIssueService.deleteIssue(uniqueId) && clientManager.deleteByUniqueId(uniqueId);
     }
 
     public boolean updateClient(Client model) {
-
-        return clientManager.update(model);
+        return clientManager.update(model) && clientIssueService.updateIssue(model);
     }
 }

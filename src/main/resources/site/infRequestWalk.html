@@ -6,6 +6,7 @@
 
     <script src="/plugins/servlet/servlet-inf/site/js/scriptInfRequestWalk.js" type="text/javascript"></script>
     <link href="/plugins/servlet/servlet-inf/site/css/styleRequestWalk.css" rel="stylesheet"/>
+    <script src="https://cdn.anychart.com/js/latest/anychart-bundle.min.js"></script>
 
 </head>
 <body>
@@ -83,6 +84,18 @@
     <br>
     <div id="requestTable"></div>
 
+    <br>
+    <table id = "charts">
+        <tr>
+            <td>
+                <div id="chart1"></div>
+            </td>
+            <td>
+                <div id="chart2"></div>
+            </td>
+        </tr>
+    </table>
+
     <h2>Create request walk</h2>
     <table id="createRequestTable">
         <tr>
@@ -143,104 +156,40 @@
         </tr>
     </table>
 
+<!--    <style>-->
+<!--        #chart1 {-->
+<!--            margin: auto;-->
+<!--            width: 400px;-->
+<!--            height: 400px;-->
+<!--        }-->
+<!--    </style>-->
+
+<!--    <script>-->
+<!--        // let array = new Array(3);-->
+<!--        //-->
+<!--        // for (let i = 0; i < array.length; i++) {-->
+<!--        //     array[i] = new Array(2);-->
+<!--        //-->
+<!--        //     for (let j = 0; j < array[i].length; j++) {-->
+<!--        //-->
+<!--        //     }-->
+<!--        // }-->
+
+<!--        function crtReq(){-->
+<!--            let arr = [["Valera", 5], ["Dima", 3], ["Something", 1]]-->
+
+<!--            let chart = anychart.pie(arr);-->
+<!--            chart.title("Diagram");-->
+<!--            chart.container("chart1").draw();-->
+
+<!--        }-->
+
+<!--    </script>-->
     <br>
-    <div id="outReq"></div>
+    <div id = "outReq"></div>
 
     <div id="footerReq">&copy; Dvoryanchikov Sergey</div>
 </div>
-
-<!--<script>-->
-<!--    function createButn() {-->
-<!--        let elem = document.createElement("input");-->
-<!--        elem.value = "push";-->
-<!--        elem.type = "button";-->
-
-<!--        elem.addEventListener("click", function () {-->
-<!--            let id = elem.parentElement.id;-->
-<!--            let selectItems = document.getElementById(id).children[0].value;-->
-<!--            let idRow = document.getElementById("row" + id);-->
-<!--            let idFirstElemRow = idRow.children[0].textContent;-->
-<!--            alert(idFirstElemRow + selectItems);-->
-<!--        });-->
-<!--        return elem;-->
-<!--    }-->
-
-<!--    function createSelect() {-->
-<!--        let elem = document.createElement("select");-->
-
-<!--        for (let i = 0; i < 3; i++) {-->
-<!--            let innerElem = document.createElement("option");-->
-
-<!--            if (i === 0) {-->
-<!--                innerElem.innerHTML = "1";-->
-<!--                innerElem.value = "1";-->
-
-<!--            } else if (i === 1) {-->
-<!--                innerElem.innerHTML = "2";-->
-<!--                innerElem.value = "2";-->
-
-<!--            } else if (i === 2) {-->
-<!--                innerElem.innerHTML = "3";-->
-<!--                innerElem.value = "3";-->
-<!--            }-->
-
-<!--            elem.append(innerElem);-->
-<!--        }-->
-<!--        return elem;-->
-<!--    }-->
-
-<!--    function createElem(id) {-->
-<!--        let parent = document.createElement("div");-->
-<!--        parent.id = id;-->
-<!--        parent.append(createSelect());-->
-<!--        parent.append(createButn());-->
-<!--        return parent;-->
-<!--    }-->
-
-<!--    function crtReq() {-->
-<!--        let parent = document.getElementById("outReq");-->
-<!--        let table = document.createElement("table");-->
-
-<!--        for (let i = 0; i < 3; i++) {-->
-<!--            let row = document.createElement("tr");-->
-<!--            row.id = "row" + i;-->
-<!--            let id;-->
-
-<!--            if (i === 0) {-->
-<!--                id = "111";-->
-
-<!--            } else if (i === 1) {-->
-<!--                id = "222";-->
-
-<!--            } else if (i === 2) {-->
-<!--                id = "333";-->
-<!--            }-->
-
-<!--            for (let j = 0; j < 3; j++) {-->
-<!--                let col = document.createElement("td");-->
-
-<!--                if (j === 0) {-->
-<!--                    col.innerHTML = id;-->
-
-<!--                } else if (j === 1) {-->
-<!--                    col.innerHTML = "sdasd";-->
-
-<!--                } else if (j === 2) {-->
-<!--                    col.append(createElem("" + i));-->
-<!--                }-->
-<!--                row.append(col);-->
-<!--            }-->
-<!--            table.append(row);-->
-<!--        }-->
-<!--        parent.append(table);-->
-<!--    }-->
-<!--</script>-->
-
-<!--<div id="Container">-->
-<!--    <div id="header"></div>-->
-<!--    <div id="footer"></div>-->
-<!--    <div id="content"></div>-->
-<!--</div>-->
 
 </body>
 </html>

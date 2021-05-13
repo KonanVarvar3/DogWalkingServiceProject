@@ -12,7 +12,7 @@ public class RequestWalkManager {
         this.ao = ao;
     }
 
-    public boolean save(RequestWalk model) {
+    public Boolean save(RequestWalk model) {
         try {
             IRequestWalk entity = ao.create(IRequestWalk.class);
             model.toEntity(entity);

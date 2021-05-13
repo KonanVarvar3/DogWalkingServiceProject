@@ -16,6 +16,17 @@ function clearReq() {
 function clearAllReq() {
     let parent = document.getElementById("requestTable");
     parent.innerText = "";
+
+    let chartWalkers = document.getElementById("chart1");
+    chartWalkers.innerHTML = "";
+    chartWalkers.style.width = "0px";
+    chartWalkers.style.height = "0px";
+
+    let chartDogs = document.getElementById("chart2");
+    chartDogs.innerHTML = "";
+    chartDogs.style.width = "0px";
+    chartDogs.style.height = "0px";
+
 }
 
 function formFindReq() {
@@ -200,7 +211,6 @@ function findClient(id) {
 
 function findDog(id) {
     let dog = "";
-
     let xhttp = new XMLHttpRequest();
 
     xhttp.open("GET",
@@ -218,7 +228,6 @@ function findDog(id) {
         let array = JSON.parse(data);
         dog = array.dogName + " " + array.breed;
     }
-
     return dog;
 }
 
@@ -608,6 +617,122 @@ function loadOwners() {
     });
 }
 
+function getChartWalkers() {
+    let walkers = "";
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.open("GET",
+        "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/allDogWalkers", false);
+    xhttp.send();
+
+    if (xhttp.status === 200) {
+        myFunction(xhttp.responseText);
+    } else {
+        alert("No data!");
+    }
+
+    function myFunction(data) {
+        walkers = JSON.parse(data);
+    }
+    return walkers;
+}
+
+function createChartDogWalkers(arrayReq, arrayWalkers) {
+    let reqWalkers = [];
+    let resultWalkers = [];
+    let counter = 0;
+
+    for (let i = 0; i < arrayReq.length ; i++) {
+        if(arrayReq[i].requestWalkStatus === "COMPLETED") {
+            reqWalkers[i] = arrayReq[i].dogWalkerId;
+        }
+    }
+
+    for (let i = 0; i < arrayWalkers.length; i++) {
+        resultWalkers[i] = [];
+        counter = 0;
+
+        for (let j = 0; j < 2; j++) {
+            if(j === 0) {
+                resultWalkers[i][j] = findDogWalker(arrayWalkers[i].uniqueId);
+            }else {
+                for (let k = 0; k < arrayReq.length; k++) {
+                    if(arrayWalkers[i].uniqueId === reqWalkers[k]) {
+                        counter++;
+                    }
+                }
+                resultWalkers[i][j] = counter;
+            }
+        }
+    }
+    let elem = document.getElementById("chart1");
+    elem.innerHTML = "";
+    elem.style.width = "400px";
+    elem.style.height = "400px";
+
+    let chart = anychart.pie(resultWalkers);
+    chart.title("Dog walkers completed requests");
+    chart.container("chart1").draw();
+}
+
+function getChartDogs() {
+    let dogs = "";
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.open("GET",
+        "http://localhost:8080/rest/dogWalkingRest/1.0/dogWalkingService/allDogs", false);
+    xhttp.send();
+
+    if (xhttp.status === 200) {
+        myFunction(xhttp.responseText);
+    } else {
+        alert("No data!");
+    }
+
+    function myFunction(data) {
+        dogs = JSON.parse(data);
+    }
+    return dogs;
+}
+
+function createChartDogs(arrayReq, arrayDogs) {
+    let reqDogs = [];
+    let resultDogs = [];
+    let counter = 0;
+
+    for (let i = 0; i < arrayReq.length ; i++) {
+        if(arrayReq[i].requestWalkStatus === "COMPLETED") {
+            reqDogs[i] = arrayReq[i].petId;
+        }
+    }
+
+    for (let i = 0; i < arrayDogs.length; i++) {
+        resultDogs[i] = [];
+        counter = 0;
+
+        for (let j = 0; j < 2; j++) {
+            if(j === 0) {
+                resultDogs[i][j] = findDog(arrayDogs[i].uniqueId);
+            }else {
+                for (let k = 0; k < arrayReq.length; k++) {
+                    if(arrayDogs[i].uniqueId === reqDogs[k]) {
+                        counter++;
+                    }
+                }
+                resultDogs[i][j] = counter;
+            }
+        }
+    }
+    let elem = document.getElementById("chart2");
+    elem.innerHTML = "";
+    elem.style.width = "400px";
+    elem.style.height = "400px";
+
+    let chart = anychart.column(resultDogs);
+    chart.title("How many dogs walked with walkers");
+    chart.container("chart2").draw();
+}
+
 function addFromBdReq() {
     AJS.$.ajax({
         type: 'get',
@@ -631,8 +756,10 @@ function addFromBdReq() {
             row.append(col);
 
             addDataTableReq(data, table);
-
             parent.append(table);
+
+            createChartDogWalkers(data, getChartWalkers());
+            createChartDogs(data, getChartDogs());
         }
     });
 }

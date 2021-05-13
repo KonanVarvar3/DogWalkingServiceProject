@@ -33,18 +33,21 @@ public class DogService {
     }
 
     public boolean createDog(Dog model) {
-        return (dogManager.save(model) && dogIssueService.create(model));
+        model.setIssueId(dogIssueService.create(model).getId().toString());
+        return dogManager.save(model);
     }
 
     public boolean deleteDogByUniqueId(String uniqueId) {
+        dogIssueService.deleteIssue(uniqueId);
         return dogManager.deleteByUniqueId(uniqueId);
     }
 
     public boolean updateDog(Dog model) {
-        return dogManager.update(model);
+        dogManager.update(model);
+        return dogIssueService.updateChangeStatusIssue(model);
     }
 
     public boolean fullUpdateDog(Dog model) {
-        return dogManager.fullUpdate(model);
+        return dogManager.fullUpdate(model) && dogIssueService.updateIssue(model);
     }
 }
