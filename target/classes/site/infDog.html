@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="decorator" content="atl.general"/>
+    <title>
+        Dogs
+    </title>
+
+    <script src="/plugins/servlet/servlet-inf/site/js/scriptInfDog.js" type="text/javascript"></script>
+    <link href="/plugins/servlet/servlet-inf/site/css/styleDog.css" rel="stylesheet"/>
+
+</head>
+<body>
+<div id="menu">
+    <table id="menuTable">
+        <tr>
+            <td>
+                Menu
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/mainPage.html">
+                    <input type="button" id="menuButton1" value="Back to main page">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/infClient.html">
+                    <input type="button" id="menuButton2" value="Go to clients">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/infDogWalker.html">
+                    <input type="button" id="menuButton3" value="Go to dogwalkers">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/plugins/servlet/servlet-inf/site/infRequestWalk.html">
+                    <input type="button" id="menuButton4" value="Go to requests">
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="newDg"></div>
+
+<div id="contentDogPage">
+    <h1>Work with pets</h1>
+
+    <h2>Search dog</h2>
+
+    <form id="myFormD" action="#" onsubmit="formFindDog()">
+        <table id="findDog">
+            <tr>
+                <td>Enter unique id dog</td>
+            </tr>
+            <tr>
+                <td><input type=text id="uniqueIdD"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type=submit name="submit" value="find" id="newD">
+                    <input type="button" onclick="addFromBdD()" value="get all dogs">
+                    <input type="button" onclick="clearDog()" value="hide found dog">
+                    <input type="button" onclick="clearAllDog()" value="hide all dogs">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br>
+    <div id="findTableD"></div>
+
+    <br>
+    <div id="dogTable"></div>
+
+    <h2>Create pet</h2>
+    <table id="createPetTable">
+        <tr>
+            <td>
+                Dog name:
+            </td>
+            <td>
+                <input type="text" onclick="inputValueDogName()" class="inputDog"
+                       id="dogName" placeholder="Default">
+                <div id="inputDogName"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Gender:
+            </td>
+            <td>
+                <input type="text" onclick="inputValueGender()" class="inputDog"
+                       id="gender" placeholder="Default">
+                <div id="inputGender"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Dog Birthday:
+            </td>
+            <td>
+                <input type="date" onclick="inputValueDogBirthday()" name="date"
+                       class="inputDog, form-control" id="dogBirthDate" placeholder="dd.mm.yyyy" required>
+
+                <div id="inputDogBirthday"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Breed:
+            </td>
+            <td>
+                <input type="text" onclick="inputValueBreed()" class="inputDog"
+                       id="breed" placeholder="Default">
+                <div id="inputBreed"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Color:
+            </td>
+            <td>
+                <input type="text" onclick="inputValueColor()" class="inputDog"
+                       id="color" placeholder="Default">
+                <div id="inputColor"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Dog character:
+            </td>
+            <td>
+                <input type="text" onclick="inputValueCharacter()" class="inputDog"
+                       id="dogCharacter" placeholder="Default">
+                <div id="inputCharacter"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Owner:
+            </td>
+            <td>
+                <select id="selectOwner">
+                    <option>default</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" id="createButton" onclick="crtD()" value="create">
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <div id="outD"></div>
+
+    <div id="footerDog">&copy; Dvoryanchikov Sergey</div>
+</div>
+
+<!--<div id="Container">-->
+<!--    <div id="header"></div>-->
+<!--    <div id="footer"></div>-->
+<!--    <div id="content"></div>-->
+<!--</div>-->
+
+</body>
+</html>

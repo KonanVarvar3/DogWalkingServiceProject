@@ -1,0 +1,145 @@
+h1 {
+    text-align: center;
+    background: antiquewhite;
+}
+
+h2 {
+    text-align: center;
+}
+
+table {
+    border: 1px solid black;
+    font-size: 20px
+}
+
+th {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#findTable{
+    width: 100%;
+}
+
+#clientTable{
+    width: 100%;
+}
+
+#createClientTable {
+    margin: auto;
+    width: 45%;
+}
+
+#newClt {
+    color: green;
+    display: none;
+    font-size: 20px;
+    text-align: center;
+    margin-left: 85%;
+    position: fixed;
+    margin-top: 2%;
+}
+
+#findClient {
+    margin: auto;
+    width: 45%;
+}
+
+#uniqueId {
+    margin-left: 4%;
+    width: 90%;
+}
+
+#lastName, #name, #middleName, #birthDate, #phoneNumber, #email, #address {
+    margin-left: 4%;
+    width: 90%;
+}
+
+#email {
+    margin-left: 4%;
+    width: 60%;
+}
+
+#selectDomains {
+    width: 30%
+}
+
+#createButton {
+    margin-left: 4%;
+    width: 90%;
+}
+
+#menu {
+    color: chartreuse;
+    text-align: center;
+    float: left;
+    position: fixed;
+    margin-left: 3%;
+    margin-top: 2%;
+}
+
+#menuTable {
+    background: dodgerblue;
+}
+
+#menuButton1, #menuButton2, #menuButton3, #menuButton4 {
+    width: 95%;
+}
+
+#contentClientPage {
+    margin: 0 15%;
+    border: 3px solid gray;
+}
+
+#footerClient {
+    background: aquamarine;
+    height: 5%;
+    width: 100%;
+}
+
+#inputLastName {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+#inputName {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+#inputMiddleName {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+#inputBirthday {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+#inputPhone {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+#inputEmail {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+#inputAddress {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
